@@ -10,6 +10,12 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
+        ApplicationUI appUI = new ApplicationUI();
+        appUI.start();
+
+
+
+        // Following section only for testing purposes.
         LiteratureRegister register = new LiteratureRegister();
 
         register.addMagazine(new Magazine("TV Guide", "TVSM inc", 365, "Magazine", "Television"));
