@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 
 /**
- * Main for running application.
+ * The Main-class of the application. This class only holds the main()-method
+ * to start the application.
  *
  * @author André Storhaug, Christan Leira and Vebjørn Tomren
- * @version 02022018
+ * @version 1.0
  */
 public class Main {
 
