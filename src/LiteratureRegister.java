@@ -79,7 +79,7 @@ public class LiteratureRegister {
      * @return an <code>ArrayList</code> of magazine objects found in the literature
      * registry matching the publisher provided
      */
-    public ArrayList<Magazine> getMagazineByPublisherAsCollection(String publisher) {
+    public Iterator<Magazine> getMagazineByPublisherAsCollection(String publisher) {
         ArrayList<Magazine> listOfFoundMagazines = new ArrayList<>();
 
         for (Magazine m : this.listOfMagazines) {

@@ -31,7 +31,7 @@ public class Main {
         System.out.println(register.findMagazineByTitleAndPublisher("US Weekly", "USA now"));
 
         System.out.println("\nSearch for publisher:");
-        ArrayList<Magazine> searchResult = register.getMagazineByPublisherAsCollection("Orange Banana");
+        /*ArrayList<Magazine> searchResult = register.getMagazineByPublisherAsCollection("Orange Banana");
         System.out.println(searchResult);
 
 
@@ -40,7 +40,7 @@ public class Main {
                 searchResult) {
             System.out.println(magazine.getTitle());
         }
-
+*/
         System.out.println("\nPrints all magazines details:");
         register.listAllMagazinesDetails();
     }
