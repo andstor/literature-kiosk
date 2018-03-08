@@ -100,6 +100,9 @@ public class ApplicationUI {
      */
     private void init() {
         System.out.println("init() was called");
+
+        LiteratureRegister register = new LiteratureRegister();
+
     }
 
     /**
@@ -109,7 +112,6 @@ public class ApplicationUI {
     private void listAllMagazines() {
         System.out.println("listAllMagazines() was called");
     }
-
 
 
     /**
@@ -124,6 +126,7 @@ public class ApplicationUI {
      * user!!
      */
     private void addNewMagazine() {
+
         System.out.println("addNewMagazine() was called");
 
     }
