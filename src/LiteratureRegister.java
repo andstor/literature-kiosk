@@ -70,7 +70,7 @@ public class LiteratureRegister {
     }
 
     /**
-     * Finds and returns a collection (ArrayList) of magazines
+     * Finds and returns a Iterator with magazines
      * with a publisher matching the parameter publisher.
      * If there are no magazines in the literature registry matching the
      * publisher given, an empty  is returned.
@@ -87,6 +87,6 @@ public class LiteratureRegister {
                 listOfFoundMagazines.add(m);
             }
         }
-        return listOfFoundMagazines;
+        return listOfFoundMagazines.iterator();
     }
 }
