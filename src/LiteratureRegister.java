@@ -76,7 +76,7 @@ public class LiteratureRegister {
      * publisher given, an empty  is returned.
      *
      * @param publisher The publisher of the magazine to find in the literature registry.
-     * @return an <code>ArrayList</code> of magazine objects found in the literature
+     * @return an <code>Iterator</code> of magazine objects found in the literature
      * registry matching the publisher provided
      */
     public Iterator<Magazine> getMagazineByPublisherAsCollection(String publisher) {
