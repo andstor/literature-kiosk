@@ -11,6 +11,8 @@ import java.util.Scanner;
  */
 public class ApplicationUI {
 
+    private LiteratureRegister register;
+
     // The menu that will be displayed.
     private String[] menuItems = {
             "1. List all magazines",
@@ -84,6 +86,8 @@ public class ApplicationUI {
         // Read input from user
         Scanner reader = new Scanner(System.in);
         int menuSelection = reader.nextInt();
+        reader.nextLine();
+        String ajksdhasdkjh = reader.nextLine();
         if ((menuSelection < 1) || (menuSelection > maxMenuItemNumber)) {
             throw new InputMismatchException();
         }
@@ -126,6 +130,17 @@ public class ApplicationUI {
      * user!!
      */
     private void addNewMagazine() {
+        Scanner reader = new Scanner(System.in);
+
+        System.out.println("Please specify a title of the magazine.");
+        String title = reader.nextLine();
+
+        //TODO: Retrieve info from user input.
+
+        Magazine magazine = new Magazine(title, publisher, publicationsYearly, type, genre);
+
+        register.addMagazine(magazine);
+
 
         System.out.println("addNewMagazine() was called");
 
