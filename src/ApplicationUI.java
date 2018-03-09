@@ -1,3 +1,5 @@
+import com.sun.org.apache.xpath.internal.SourceTree;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -11,13 +13,13 @@ import java.util.Scanner;
  */
 public class ApplicationUI {
 
-    private LiteratureRegister register;
-
+    private LiteratureRegister register = new LiteratureRegister();
+    private Scanner reader = new Scanner(System.in);
     // The menu that will be displayed.
     private String[] menuItems = {
             "1. List all magazines",
             "2. Add new magazine",
-            "3. Find a magazine by name",
+            "3. Find a magazine by name and publisher",
     };
 
     /**
@@ -29,8 +31,6 @@ public class ApplicationUI {
 
 
     public void start() {
-        this.init();
-
         boolean quit = false;
 
         while (!quit) {
@@ -46,7 +46,7 @@ public class ApplicationUI {
                         break;
 
                     case 3:
-                        this.findMagazineByName();
+                        this.findMagazine();
                         break;
 
                     case 4:
@@ -60,7 +60,6 @@ public class ApplicationUI {
                 System.out.println("\nERROR: Please provide a number between 1 and " + this.menuItems.length + "..\n");
             }
         }
-
     }
 
 
@@ -69,7 +68,6 @@ public class ApplicationUI {
      * expected to input an integer between 1 and the max number of menu items.
      * If the user inputs anything else, an InputMismatchException is thrown.
      * The method returns the valid input from the user.
-     *
      * @return the menu number (between 1 and max menu item number) provided by the user.
      * @throws InputMismatchException if user enters an invalid number/menu choice
      */
@@ -84,10 +82,7 @@ public class ApplicationUI {
         System.out.println(maxMenuItemNumber + ". Exit\n");
         System.out.println("Please choose menu item (1-" + maxMenuItemNumber + "): ");
         // Read input from user
-        Scanner reader = new Scanner(System.in);
         int menuSelection = reader.nextInt();
-        reader.nextLine();
-        String ajksdhasdkjh = reader.nextLine();
         if ((menuSelection < 1) || (menuSelection > maxMenuItemNumber)) {
             throw new InputMismatchException();
         }
@@ -98,66 +93,63 @@ public class ApplicationUI {
     // ------ All these methods are made privat, since they are only used by the menu ---
 
     /**
-     * TODO:
-     * Initializes the application.
-     * Typically you would create the LiteratureRegistrer-instance here
-     */
-    private void init() {
-        System.out.println("init() was called");
-
-        LiteratureRegister register = new LiteratureRegister();
-
-    }
-
-    /**
-     * TODO:
      * Lists all the products/literature in the register
+     * Returns information based on the contained magazines
      */
     private void listAllMagazines() {
-        System.out.println("listAllMagazines() was called");
+        if(!register.isRegistryEmpty()) {
+            System.out.println("Current magazines in register");
+            this.register.listAllMagazinesDetails();
+        }
+        else{
+            System.out.println("The registry is empty. Please add magazines.");
+        }
     }
 
 
     /**
-     * TODO:
-     * Add a new product/literature to the register.
-     * In this method you have to add code to ask the
-     * user for the necessary information you need to
-     * create an instance of the product, which you
-     * then send as a parameter to the addNewspaper()-
-     * method of the register.
-     * Remember to also handle invalid input from the
-     * user!!
+     * Adds a new magazine based on the information given by the
+     * user.
      */
     private void addNewMagazine() {
-        Scanner reader = new Scanner(System.in);
 
-        System.out.println("Please specify a title of the magazine.");
+        reader.nextLine();
+        System.out.println("Please specify the title of the magazine.");
         String title = reader.nextLine();
-
-        //TODO: Retrieve info from user input.
+        System.out.println("Please specify the publisher of the magazine.");
+        String publisher = reader.nextLine();
+        System.out.println("Please specify the publication by year of the magazine.");
+        int publicationsYearly = reader.nextInt();
+        reader.nextLine();
+        System.out.println("Please specify the type of the magazine.");
+        String type = reader.nextLine();
+        System.out.println("Please specify the genre of the magazine.");
+        String genre = reader.nextLine();
 
         Magazine magazine = new Magazine(title, publisher, publicationsYearly, type, genre);
 
         register.addMagazine(magazine);
-
-
-        System.out.println("addNewMagazine() was called");
-
+        System.out.println("Your added magazine:");
+        System.out.println(magazine.getAllDetailsAsString());
     }
 
     /**
-     * TODO:
-     * Find and display a product based om name (title).
-     * As with the addNewMagazine()-method, you have to
-     * ask the user for the string (name/title/publisher)
-     * to search for, and then use this string as input-
-     * parameter to the method in the register-object.
-     * Then, upon return from the register, you need
-     * to print the details of the found item.
+     * Finds a magazine based on the title and the publisher
+     * given as a user input.
      */
-    private void findMagazineByName() {
-        System.out.println("findMagazineByName() was called");
+    private void findMagazine() {
+        reader.nextLine();
+        System.out.println("Enter the title of the magazine here");
+        String title = reader.nextLine();
+        System.out.println("Enter the publisher of the magazine here");
+        String publisher = reader.nextLine();
+        Magazine foundMagazine = register.findMagazineByTitleAndPublisher(title, publisher);
+        if (foundMagazine != null) {
+            System.out.println(foundMagazine.getAllDetailsAsString());
+        } else {
+            System.out.println("This is not an existing magazine in the kiosk");
+            System.out.println("Check back in another week if it is available");
+        }
     }
 
 }

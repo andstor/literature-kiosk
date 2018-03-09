@@ -89,4 +89,8 @@ public class LiteratureRegister {
         }
         return listOfFoundMagazines.iterator();
     }
+
+    public boolean isRegistryEmpty()    {
+        return listOfMagazines.isEmpty();
+    }
 }
