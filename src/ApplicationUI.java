@@ -1,5 +1,3 @@
-import com.sun.org.apache.xpath.internal.SourceTree;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -13,7 +11,7 @@ import java.util.Scanner;
  */
 public class ApplicationUI {
 
-    private LiteratureRegister register = new LiteratureRegister();
+    private LiteratureRegister register;
     private Scanner reader = new Scanner(System.in);
     // The menu that will be displayed.
     private String[] menuItems = {
@@ -31,6 +29,7 @@ public class ApplicationUI {
 
 
     public void start() {
+        this.init();
         boolean quit = false;
 
         while (!quit) {
@@ -46,7 +45,7 @@ public class ApplicationUI {
                         break;
 
                     case 3:
-                        this.findMagazine();
+                        this.findMagazineByName();
                         break;
 
                     case 4:
@@ -68,6 +67,7 @@ public class ApplicationUI {
      * expected to input an integer between 1 and the max number of menu items.
      * If the user inputs anything else, an InputMismatchException is thrown.
      * The method returns the valid input from the user.
+     *
      * @return the menu number (between 1 and max menu item number) provided by the user.
      * @throws InputMismatchException if user enters an invalid number/menu choice
      */
@@ -91,6 +91,17 @@ public class ApplicationUI {
 
     // ------ The methods below this line are "helper"-methods, used from the menu ----
     // ------ All these methods are made privat, since they are only used by the menu ---
+
+
+    /**
+     * Initializes the application.
+     */
+    private void init() {
+        System.out.println("init() was called");
+
+        LiteratureRegister register = new LiteratureRegister();
+
+    }
 
     /**
      * Lists all the products/literature in the register
@@ -137,7 +148,7 @@ public class ApplicationUI {
      * Finds a magazine based on the title and the publisher
      * given as a user input.
      */
-    private void findMagazine() {
+    private void findMagazineByName() {
         reader.nextLine();
         System.out.println("Enter the title of the magazine here");
         String title = reader.nextLine();
