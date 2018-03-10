@@ -1,4 +1,5 @@
 import java.util.InputMismatchException;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -11,11 +12,12 @@ import java.util.Scanner;
  */
 public class ApplicationUI {
 
+    private LiteratureRegister register;
     // The menu that will be displayed.
     private String[] menuItems = {
             "1. List all magazines",
             "2. Add new magazine",
-            "3. Find a magazine by name",
+            "3. Find a magazine by name and publisher",
     };
 
     /**
@@ -44,7 +46,7 @@ public class ApplicationUI {
                         break;
 
                     case 3:
-                        this.findMagazineByName();
+                        this.findMagazineByTitleAndPublisher();
                         break;
 
                     case 4:
@@ -58,7 +60,6 @@ public class ApplicationUI {
                 System.out.println("\nERROR: Please provide a number between 1 and " + this.menuItems.length + "..\n");
             }
         }
-
     }
 
 
@@ -93,56 +94,86 @@ public class ApplicationUI {
     // ------ The methods below this line are "helper"-methods, used from the menu ----
     // ------ All these methods are made privat, since they are only used by the menu ---
 
+
     /**
-     * TODO:
      * Initializes the application.
-     * Typically you would create the LiteratureRegistrer-instance here
      */
     private void init() {
-        System.out.println("init() was called");
-
-        LiteratureRegister register = new LiteratureRegister();
-
+        register = new LiteratureRegister();
     }
 
     /**
-     * TODO:
      * Lists all the products/literature in the register
+     * Returns information based on the contained magazines
      */
     private void listAllMagazines() {
-        System.out.println("listAllMagazines() was called");
+        Scanner reader = new Scanner(System.in);
+        Iterator<Magazine> it = register.getAllMagazines();
+
+        if (it.hasNext()) {
+            System.out.println("Current magazines in register:");
+
+            while (it.hasNext()) {
+                Magazine magazine = it.next();
+                System.out.println("Title: " + magazine.getTitle() + ", Publisher: " + magazine.getPublisher()
+                        + ", Publications yearly: " + magazine.getPublicationsYearly()
+                        + ", Type: " + magazine.getType() + ", Genre: " + magazine.getGenre());
+            }
+        } else {
+            System.out.println("The registry is empty. Please add magazines.");
+        }
     }
 
 
     /**
-     * TODO:
-     * Add a new product/literature to the register.
-     * In this method you have to add code to ask the
-     * user for the necessary information you need to
-     * create an instance of the product, which you
-     * then send as a parameter to the addNewspaper()-
-     * method of the register.
-     * Remember to also handle invalid input from the
-     * user!!
+     * Adds a new magazine based on the information given by the
+     * user.
      */
     private void addNewMagazine() {
+        Scanner reader = new Scanner(System.in);
 
-        System.out.println("addNewMagazine() was called");
+        System.out.println("Please enter the title of the magazine.");
+        String title = reader.nextLine();
+
+        System.out.println("Please enter the publisher of the magazine.");
+        String publisher = reader.nextLine();
+
+        System.out.println("Please enter the publication by year of the magazine.");
+        int publicationsYearly = reader.nextInt();
+        reader.nextLine();
+
+        System.out.println("Please enter the type of the magazine.");
+        String type = reader.nextLine();
+        System.out.println("Please enter the genre of the magazine.");
+        String genre = reader.nextLine();
+
+        Magazine magazine = new Magazine(title, publisher, publicationsYearly, type, genre);
+
+        register.addMagazine(magazine);
+        System.out.println("Your added magazine:");
+        System.out.println(magazine.getAllDetailsAsString());
 
     }
 
     /**
-     * TODO:
-     * Find and display a product based om name (title).
-     * As with the addNewMagazine()-method, you have to
-     * ask the user for the string (name/title/publisher)
-     * to search for, and then use this string as input-
-     * parameter to the method in the register-object.
-     * Then, upon return from the register, you need
-     * to print the details of the found item.
+     * Finds a magazine based on the title and the publisher
+     * given as a user input.
      */
-    private void findMagazineByName() {
-        System.out.println("findMagazineByName() was called");
+    private void findMagazineByTitleAndPublisher() {
+        Scanner reader = new Scanner(System.in);
+
+        System.out.println("Enter the title of the magazine here");
+        String title = reader.nextLine();
+        System.out.println("Enter the publisher of the magazine here");
+        String publisher = reader.nextLine();
+
+        Magazine foundMagazine = register.findMagazineByTitleAndPublisher(title, publisher);
+        if (null != foundMagazine) {
+            System.out.println("The magazine matching the title " + title + " and " + publisher + " is:");
+            System.out.println(foundMagazine.getAllDetailsAsString());
+        } else {
+            System.out.println("This is not an existing magazine in the kiosk.");
+        }
     }
 
 }
