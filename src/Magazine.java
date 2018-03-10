@@ -108,6 +108,8 @@ public class Magazine {
         this.genre = genre;
     }
 
+
+
     /**
      * TODO: Remove this method, but reuse javadock in ApplicationUI.java
      * Returns a formatted string containing all the details about the magazine, on the form

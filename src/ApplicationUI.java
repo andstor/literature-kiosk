@@ -116,9 +116,7 @@ public class ApplicationUI {
 
             while (it.hasNext()) {
                 Magazine magazine = it.next();
-                System.out.println("Title: " + magazine.getTitle() + ", Publisher: " + magazine.getPublisher()
-                        + ", Publications yearly: " + magazine.getPublicationsYearly()
-                        + ", Type: " + magazine.getType() + ", Genre: " + magazine.getGenre());
+                printAllMagazineDetails(magazine);
             }
         } else {
             System.out.println("The registry is empty. Please add magazines.");
@@ -214,7 +212,7 @@ public class ApplicationUI {
 
         register.addMagazine(magazine);
         System.out.println("\nYour added magazine:");
-        System.out.println(magazine.getAllDetailsAsString());
+        printAllMagazineDetails(magazine);
 
     }
 
@@ -232,11 +230,18 @@ public class ApplicationUI {
 
         Magazine foundMagazine = register.findMagazineByTitleAndPublisher(title, publisher);
         if (null != foundMagazine) {
-            System.out.println("The magazine matching the title " + title + " and " + publisher + " is:");
-            System.out.println(foundMagazine.getAllDetailsAsString());
+            System.out.println("The magazine matching the title \"" + title + "\" and the publisher \"" + publisher + "\" is:");
+            printAllMagazineDetails(foundMagazine);
         } else {
             System.out.println("This is not an existing magazine in the kiosk.");
         }
+    }
+
+
+    public void printAllMagazineDetails(Magazine magazine) {
+        System.out.println("Title: " + magazine.getTitle() + ", Publisher: " + magazine.getPublisher()
+                + ", Publications yearly: " + magazine.getPublicationsYearly()
+                + ", Type: " + magazine.getType() + ", Genre: " + magazine.getGenre());
     }
 
 }
