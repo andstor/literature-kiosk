@@ -46,7 +46,7 @@ public class ApplicationUI {
                         break;
 
                     case 3:
-                        this.findMagazineByName();
+                        this.findMagazineByTitleAndPublisher();
                         break;
 
                     case 4:
@@ -109,11 +109,11 @@ public class ApplicationUI {
     private void listAllMagazines() {
         Scanner reader = new Scanner(System.in);
         Iterator<Magazine> it = register.getAllMagazines();
-        
+
         if (it.hasNext()) {
             System.out.println("Current magazines in register:");
 
-            while (it.hasNext()){
+            while (it.hasNext()) {
                 Magazine magazine = it.next();
                 System.out.println("Title: " + magazine.getTitle() + ", Publisher: " + magazine.getPublisher()
                         + ", Publications yearly: " + magazine.getPublicationsYearly()
@@ -132,26 +132,26 @@ public class ApplicationUI {
     private void addNewMagazine() {
         Scanner reader = new Scanner(System.in);
 
-            System.out.println("Please specify the title of the magazine.");
-            String title = reader.nextLine();
+        System.out.println("Please enter the title of the magazine.");
+        String title = reader.nextLine();
 
-            System.out.println("Please specify the publisher of the magazine.");
-            String publisher = reader.nextLine();
+        System.out.println("Please enter the publisher of the magazine.");
+        String publisher = reader.nextLine();
 
-            System.out.println("Please specify the publication by year of the magazine.");
-            int publicationsYearly = reader.nextInt();
-            reader.nextLine();
+        System.out.println("Please enter the publication by year of the magazine.");
+        int publicationsYearly = reader.nextInt();
+        reader.nextLine();
 
-            System.out.println("Please specify the type of the magazine.");
-            String type = reader.nextLine();
-            System.out.println("Please specify the genre of the magazine.");
-            String genre = reader.nextLine();
+        System.out.println("Please enter the type of the magazine.");
+        String type = reader.nextLine();
+        System.out.println("Please enter the genre of the magazine.");
+        String genre = reader.nextLine();
 
-            Magazine magazine = new Magazine(title, publisher, publicationsYearly, type, genre);
+        Magazine magazine = new Magazine(title, publisher, publicationsYearly, type, genre);
 
-            register.addMagazine(magazine);
-            System.out.println("Your added magazine:");
-            System.out.println(magazine.getAllDetailsAsString());
+        register.addMagazine(magazine);
+        System.out.println("Your added magazine:");
+        System.out.println(magazine.getAllDetailsAsString());
 
     }
 
@@ -159,18 +159,20 @@ public class ApplicationUI {
      * Finds a magazine based on the title and the publisher
      * given as a user input.
      */
-    private void findMagazineByName() {
+    private void findMagazineByTitleAndPublisher() {
         Scanner reader = new Scanner(System.in);
+
         System.out.println("Enter the title of the magazine here");
         String title = reader.nextLine();
         System.out.println("Enter the publisher of the magazine here");
         String publisher = reader.nextLine();
+
         Magazine foundMagazine = register.findMagazineByTitleAndPublisher(title, publisher);
-        if (foundMagazine != null) {
+        if (null != foundMagazine) {
+            System.out.println("The magazine matching the title " + title + " and " + publisher + " is:");
             System.out.println(foundMagazine.getAllDetailsAsString());
         } else {
-            System.out.println("This is not an existing magazine in the kiosk");
-            System.out.println("Check back in another week if it is available");
+            System.out.println("This is not an existing magazine in the kiosk.");
         }
     }
 
