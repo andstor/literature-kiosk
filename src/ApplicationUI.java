@@ -126,8 +126,6 @@ public class ApplicationUI {
     }
 
 
-
-
     private boolean validateUserInputString(String reading) {
         boolean valid = false;
         if (!(reading == null) && !(reading.trim().isEmpty())) {
@@ -175,8 +173,15 @@ public class ApplicationUI {
         quit = false;
         System.out.println("Please enter the number of yearly publications of the magazine:");
         while (!quit) {
-            publicationsYearly = reader.nextInt();
-            reader.nextLine();
+            if (reader.hasNextInt()) {
+                publicationsYearly = reader.nextInt();
+                reader.nextLine();
+            } else {
+                System.out.println("Please enter a valid number between 1 and " + MAX_PUBLICATIONS_YEARLY + ":");
+                reader.next();
+                continue;
+            }
+
             if ((1 > publicationsYearly) || (MAX_PUBLICATIONS_YEARLY < publicationsYearly)) {
                 System.out.println("Please enter a valid number between 1 and " + MAX_PUBLICATIONS_YEARLY + ":");
             } else {
@@ -214,7 +219,7 @@ public class ApplicationUI {
 
     }
 
-     /**
+    /**
      * Finds a magazine based on the title and the publisher
      * given as a user input.
      */
