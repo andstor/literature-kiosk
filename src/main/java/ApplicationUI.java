@@ -58,7 +58,7 @@ public class ApplicationUI {
                     default:
                 }
             } catch (InputMismatchException ime) {
-                System.out.println("\nERROR: Please provide a number between 1 and " + this.menuItems.length + "..\n");
+                System.out.println("\nERROR: Please provide a number between 1 and " + this.menuItems.length + "src/main\n");
             }
         }
     }
