@@ -140,8 +140,6 @@ public class ApplicationUI {
      */
 
     private void addNewMagazine() {
-
-
         Scanner reader = new Scanner(System.in);
 
         String title = null, publisher = null, type = null, genre = null;
@@ -210,6 +208,7 @@ public class ApplicationUI {
                 quit = true;
             }
         }
+
 
         Magazine magazine = new Magazine(title, publisher, publicationsYearly, type, genre);
 
