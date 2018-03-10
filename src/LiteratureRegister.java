@@ -39,11 +39,10 @@ public class LiteratureRegister {
     /**
      * Lists all magazines in the literature registry by printing to the
      * terminal window.
+     * TODO: JavaDoc
      */
-    public void listAllMagazinesDetails() {
-        for (Magazine m : this.listOfMagazines) {
-            System.out.println(m.getAllDetailsAsString());
-        }
+    public Iterator<Magazine> getAllMagazines() {
+        return listOfMagazines.iterator();
     }
 
     /**

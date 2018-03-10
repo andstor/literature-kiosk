@@ -1,4 +1,5 @@
 import java.util.InputMismatchException;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -12,7 +13,6 @@ import java.util.Scanner;
 public class ApplicationUI {
 
     private LiteratureRegister register;
-    private Scanner reader = new Scanner(System.in);
     // The menu that will be displayed.
     private String[] menuItems = {
             "1. List all magazines",
@@ -30,6 +30,7 @@ public class ApplicationUI {
 
     public void start() {
         this.init();
+
         boolean quit = false;
 
         while (!quit) {
@@ -82,6 +83,7 @@ public class ApplicationUI {
         System.out.println(maxMenuItemNumber + ". Exit\n");
         System.out.println("Please choose menu item (1-" + maxMenuItemNumber + "): ");
         // Read input from user
+        Scanner reader = new Scanner(System.in);
         int menuSelection = reader.nextInt();
         if ((menuSelection < 1) || (menuSelection > maxMenuItemNumber)) {
             throw new InputMismatchException();
@@ -97,10 +99,7 @@ public class ApplicationUI {
      * Initializes the application.
      */
     private void init() {
-        System.out.println("init() was called");
-
-        LiteratureRegister register = new LiteratureRegister();
-
+        register = new LiteratureRegister();
     }
 
     /**
@@ -108,11 +107,19 @@ public class ApplicationUI {
      * Returns information based on the contained magazines
      */
     private void listAllMagazines() {
-        if(!register.isRegistryEmpty()) {
-            System.out.println("Current magazines in register");
-            this.register.listAllMagazinesDetails();
-        }
-        else{
+        Scanner reader = new Scanner(System.in);
+        Iterator<Magazine> it = register.getAllMagazines();
+        
+        if (it.hasNext()) {
+            System.out.println("Current magazines in register:");
+
+            while (it.hasNext()){
+                Magazine magazine = it.next();
+                System.out.println("Title: " + magazine.getTitle() + ", Publisher: " + magazine.getPublisher()
+                        + ", Publications yearly: " + magazine.getPublicationsYearly()
+                        + ", Type: " + magazine.getType() + ", Genre: " + magazine.getGenre());
+            }
+        } else {
             System.out.println("The registry is empty. Please add magazines.");
         }
     }
@@ -123,25 +130,29 @@ public class ApplicationUI {
      * user.
      */
     private void addNewMagazine() {
+        Scanner reader = new Scanner(System.in);
 
-        reader.nextLine();
-        System.out.println("Please specify the title of the magazine.");
-        String title = reader.nextLine();
-        System.out.println("Please specify the publisher of the magazine.");
-        String publisher = reader.nextLine();
-        System.out.println("Please specify the publication by year of the magazine.");
-        int publicationsYearly = reader.nextInt();
-        reader.nextLine();
-        System.out.println("Please specify the type of the magazine.");
-        String type = reader.nextLine();
-        System.out.println("Please specify the genre of the magazine.");
-        String genre = reader.nextLine();
+            System.out.println("Please specify the title of the magazine.");
+            String title = reader.nextLine();
 
-        Magazine magazine = new Magazine(title, publisher, publicationsYearly, type, genre);
+            System.out.println("Please specify the publisher of the magazine.");
+            String publisher = reader.nextLine();
 
-        register.addMagazine(magazine);
-        System.out.println("Your added magazine:");
-        System.out.println(magazine.getAllDetailsAsString());
+            System.out.println("Please specify the publication by year of the magazine.");
+            int publicationsYearly = reader.nextInt();
+            reader.nextLine();
+
+            System.out.println("Please specify the type of the magazine.");
+            String type = reader.nextLine();
+            System.out.println("Please specify the genre of the magazine.");
+            String genre = reader.nextLine();
+
+            Magazine magazine = new Magazine(title, publisher, publicationsYearly, type, genre);
+
+            register.addMagazine(magazine);
+            System.out.println("Your added magazine:");
+            System.out.println(magazine.getAllDetailsAsString());
+
     }
 
     /**
@@ -149,7 +160,7 @@ public class ApplicationUI {
      * given as a user input.
      */
     private void findMagazineByName() {
-        reader.nextLine();
+        Scanner reader = new Scanner(System.in);
         System.out.println("Enter the title of the magazine here");
         String title = reader.nextLine();
         System.out.println("Enter the publisher of the magazine here");

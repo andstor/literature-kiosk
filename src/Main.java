@@ -14,7 +14,7 @@ public class Main {
         appUI.start();
 
 
-
+/*
         // Following section only for testing purposes.
         LiteratureRegister register = new LiteratureRegister();
 
@@ -40,8 +40,8 @@ public class Main {
                 searchResult) {
             System.out.println(magazine.getTitle());
         }
-*/
+*//*
         System.out.println("\nPrints all magazines details:");
-        register.listAllMagazinesDetails();
+        register.listAllMagazinesDetails();*/
     }
 }
