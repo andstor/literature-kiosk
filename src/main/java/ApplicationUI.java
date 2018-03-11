@@ -8,7 +8,7 @@ import java.util.Scanner;
  * and receiving input from the user.
  *
  * @author André Storhaug, Christan Leira and Vebjørn Tomren
- * @version 1.1
+ * @version 2.0.1
  */
 public class ApplicationUI {
     private static final int MAX_PUBLICATIONS_YEARLY = 365;
@@ -61,7 +61,7 @@ public class ApplicationUI {
                         break;
 
                     case 5:
-                        System.out.println("\nThank you for using Application v0.1. Bye!\n");
+                        System.out.println("\nThank you for using Application v2.0.1. Bye!\n");
                         quit = true;
                         break;
 
@@ -84,7 +84,7 @@ public class ApplicationUI {
      * @throws InputMismatchException if user enters an invalid number/menu choice
      */
     private int showMenu() throws InputMismatchException {
-        System.out.println("\n**** Application v1.1 ****\n");
+        System.out.println("\n**** Application v2.0.1 ****\n");
         // Display the menu
         for (String menuItem : menuItems) {
             System.out.println(menuItem);
