@@ -30,12 +30,10 @@ public class ApplicationUI {
     }
 
     /**
-     * Starts the application so the user can input commands in the UI
-     * By using switch case, the user can input a number which calls a
-     * function depending on what the user needs.
-     * In case the user inputs a number that does not indicate a case,
-     * the user will get a message that tells them which cases actually
-     * do something.
+     * Starts the application so the user can input commands through the UI.
+     * The application has 5 options.
+     * The numbervalues are of data type int, and ranging from 1 to 5.
+     * If a different number is inputted, a error message will be displayed.
      */
     public void start() {
         this.init();
