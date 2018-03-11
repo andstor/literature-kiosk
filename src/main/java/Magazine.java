@@ -2,7 +2,7 @@
  * Represents a single magazine.
  *
  * @author André Storhaug, Christan Leira and Vebjørn Tomren
- * @version 18022018
+ * @version 1.1
  */
 public class Magazine {
     private String title;
@@ -13,11 +13,12 @@ public class Magazine {
 
     /**
      * Constructor for objects of class Magazine.
-     * @param title the title  of this magazine
-     * @param publisher the publisher of this magazine
+     *
+     * @param title              the title  of this magazine
+     * @param publisher          the publisher of this magazine
      * @param publicationsYearly the release date of this magazine magazine
-     * @param type the amount of pages of this magazine
-     * @param genre the genre of this magazine
+     * @param type               the amount of pages of this magazine
+     * @param genre              the genre of this magazine
      */
     public Magazine(String title, String publisher, int publicationsYearly, String type, String genre) {
         this.title = title;
@@ -30,6 +31,7 @@ public class Magazine {
 
     /**
      * Returns the title of this magazine.
+     *
      * @return the title of this magazine
      */
     public String getTitle() {
@@ -38,6 +40,7 @@ public class Magazine {
 
     /**
      * Returns the publisher's name.
+     *
      * @return the publisher's name
      */
     public String getPublisher() {
@@ -46,6 +49,7 @@ public class Magazine {
 
     /**
      * Returns the release date of the magazine.
+     *
      * @return the release date of the magazine
      */
     public int getPublicationsYearly() {
@@ -54,6 +58,7 @@ public class Magazine {
 
     /**
      * Returns the type of reading material.
+     *
      * @return the type of reading material
      */
     public String getType() {
@@ -62,6 +67,7 @@ public class Magazine {
 
     /**
      * Returns the genre number of this magazine.
+     *
      * @return the genre number of this magazine
      */
     public String getGenre() {
@@ -70,6 +76,7 @@ public class Magazine {
 
     /**
      * Set the title of this magazine
+     *
      * @param title the title of this magazine
      */
     public void setTitle(String title) {
@@ -78,6 +85,7 @@ public class Magazine {
 
     /**
      * Set the publisher of this magazine.
+     *
      * @param publisher the publisher of this magazine
      */
     public void setPublisher(String publisher) {
@@ -86,6 +94,7 @@ public class Magazine {
 
     /**
      * Set the number of yearly publications of this magazine.
+     *
      * @param publicationsYearly the number of yearly publications of this magazine
      */
     public void setPublicationsYearly(int publicationsYearly) {
@@ -94,6 +103,7 @@ public class Magazine {
 
     /**
      * Set the literature type of this magazine.
+     *
      * @param type this type of magazine
      */
     public void setType(String type) {
@@ -102,22 +112,10 @@ public class Magazine {
 
     /**
      * Set the genre of this magazine.
+     *
      * @param genre the genre of this magazine
      */
     public void setGenre(String genre) {
         this.genre = genre;
-    }
-
-    /**
-     * Returns a formatted string containing all the details about the magazine, on the form
-     * "Title: title, Publisher: publisher, Number of yearly publications: publicationsYearly,
-     * Type of reading material: type, Genre: genre".
-     *
-     * @return a formatted string containing all the details about the magazine.
-     */
-    public String getAllDetailsAsString() {
-        return ("Title: " + this.title + ", Publisher: " + this.publisher
-                + ", Publications yearly: " + this.publicationsYearly
-                + ", Type: " + this.type + ", Genre: " + this.genre);
     }
 }

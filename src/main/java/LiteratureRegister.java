@@ -6,7 +6,7 @@ import java.util.Iterator;
  * magazines.
  *
  * @author André Storhaug, Christan Leira and Vebjørn Tomren
- * @version 18022018
+ * @version 1.1
  */
 public class LiteratureRegister {
 
@@ -22,28 +22,42 @@ public class LiteratureRegister {
 
     /**
      * Adds a magazine to the literature registry.
-     * @param magazine the magazine to add to the literature registry
+     *
+     * @param magazine the magazine to add to the literature register
+     * @return true if magazine was successfully added to the register. false otherwise.
      */
-    public void addMagazine(Magazine magazine) {
-        this.listOfMagazines.add(magazine);
+    public boolean addMagazine(Magazine magazine) {
+        if (null != magazine) {
+            this.listOfMagazines.add(magazine);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
      * Removes a magazine from the literature registry.
+     *
      * @param magazine the magazine to remove from the literature registry
+     * @return true if magazine was successfully removed from the register; false otherwise.
      */
-    public void removeMagazine(Magazine magazine) {
-        this.listOfMagazines.remove(magazine);
+    public boolean removeMagazine(Magazine magazine) {
+        boolean removeSuccessful = false;
+        if (null != magazine) {
+            removeSuccessful = this.listOfMagazines.remove(magazine);
+        } else {
+            removeSuccessful = false;
+        }
+        return removeSuccessful;
     }
 
     /**
-     * Lists all magazines in the literature registry by printing to the
-     * terminal window.
+     * Returns an iterator with all the magazines in the literature registry.
+     *
+     * @return an iterator with all the magazines in the literature registry.
      */
-    public void listAllMagazinesDetails() {
-        for (Magazine m : this.listOfMagazines) {
-            System.out.println(m.getAllDetailsAsString());
-        }
+    public Iterator<Magazine> getAllMagazines() {
+        return listOfMagazines.iterator();
     }
 
     /**
@@ -51,10 +65,10 @@ public class LiteratureRegister {
      * If there are no magazines in the literature registry matching the
      * parameters given, <code>null</code> is returned.
      *
-     * @param title the title of the magazine to find in the literature registry
+     * @param title     the title of the magazine to find in the literature registry
      * @param publisher the publisher of the magazine to find in the literature registry
      * @return the magazine found in the literature registry matching the parameters provided; otherwise,
-     *         <code>null</code> is returned.
+     * <code>null</code> is returned.
      */
     public Magazine findMagazineByTitleAndPublisher(String title, String publisher) {
         Magazine foundMagazine = null;
@@ -70,23 +84,24 @@ public class LiteratureRegister {
     }
 
     /**
-     * Finds and returns a collection (ArrayList) of magazines
+     * Finds and returns a Iterator with magazines
      * with a publisher matching the parameter publisher.
      * If there are no magazines in the literature registry matching the
      * publisher given, an empty  is returned.
      *
      * @param publisher The publisher of the magazine to find in the literature registry.
-     * @return an <code>ArrayList</code> of magazine objects found in the literature
+     * @return an <code>Iterator</code> of magazine objects found in the literature
      * registry matching the publisher provided
      */
-    public ArrayList<Magazine> getMagazineByPublisherAsCollection(String publisher) {
+    public Iterator<Magazine> getMagazineByPublisherAsCollection(String publisher) {
         ArrayList<Magazine> listOfFoundMagazines = new ArrayList<>();
 
         for (Magazine m : this.listOfMagazines) {
-            if (publisher.equals(m.getPublisher())){
+            if (publisher.equals(m.getPublisher())) {
                 listOfFoundMagazines.add(m);
             }
         }
-        return listOfFoundMagazines;
+        return listOfFoundMagazines.iterator();
     }
+
 }
