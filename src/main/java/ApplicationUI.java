@@ -8,7 +8,7 @@ import java.util.Scanner;
  * and receiving input from the user.
  *
  * @author André Storhaug, Christan Leira and Vebjørn Tomren
- * @version 2.1
+ * @version 2.0.1
  */
 public class ApplicationUI {
     private static final int MAX_PUBLICATIONS_YEARLY = 365;
