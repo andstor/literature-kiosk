@@ -29,7 +29,12 @@ public class ApplicationUI {
 
     }
 
-
+    /**
+     * Starts the application so the user can input commands through the UI.
+     * The application has 5 options.
+     * The numbervalues are of data type int, and ranging from 1 to 5.
+     * If a different number is inputted, a error message will be displayed.
+     */
     public void start() {
         this.init();
 
@@ -130,8 +135,9 @@ public class ApplicationUI {
 
 
     /**
-     * Adds a new magazine to the register based on the information given by the
-     * user.
+     * Adds a new magazine based on the information provided by the user.
+     * This includes title, publisher, yearly publications, type and genre.
+     * If the user inputs a faulty value, an error message will be displayed.
      */
     private void addNewMagazine() {
         Scanner reader = new Scanner(System.in);
