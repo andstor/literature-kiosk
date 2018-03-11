@@ -107,20 +107,4 @@ public class Magazine {
     public void setGenre(String genre) {
         this.genre = genre;
     }
-
-
-
-    /**
-     * TODO: Remove this method, but reuse javadock in ApplicationUI.java
-     * Returns a formatted string containing all the details about the magazine, on the form
-     * "Title: title, Publisher: publisher, Number of yearly publications: publicationsYearly,
-     * Type of reading material: type, Genre: genre".
-     *
-     * @return a formatted string containing all the details about the magazine.
-     */
-    public String getAllDetailsAsString() {
-        return ("Title: " + this.title + ", Publisher: " + this.publisher
-                + ", Publications yearly: " + this.publicationsYearly
-                + ", Type: " + this.type + ", Genre: " + this.genre);
-    }
 }

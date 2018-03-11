@@ -19,6 +19,7 @@ public class ApplicationUI {
             "1. List all magazines",
             "2. Add new magazine",
             "3. Find a magazine by name and publisher",
+            "4. Find all magazines by publisher",
     };
 
     /**
@@ -51,6 +52,10 @@ public class ApplicationUI {
                         break;
 
                     case 4:
+                        this.findMagazinesByPublisher();
+                        break;
+
+                    case 5:
                         System.out.println("\nThank you for using Application v0.1. Bye!\n");
                         quit = true;
                         break;
@@ -124,88 +129,48 @@ public class ApplicationUI {
     }
 
 
-    private boolean validateUserInputString(String reading) {
-        boolean valid = false;
-        if (!(reading == null) && !(reading.trim().isEmpty())) {
-            valid = true;
-        }
-        return valid;
-    }
-
     /**
-     * Adds a new magazine based on the information given by the
+     * Adds a new magazine to the register based on the information given by the
      * user.
      */
-
     private void addNewMagazine() {
         Scanner reader = new Scanner(System.in);
 
-        String title = null, publisher = null, type = null, genre = null;
         int publicationsYearly = 0;
-        boolean quit;
 
-        quit = false;
         System.out.println("Please enter the title of the magazine:");
-        while (!quit) {
-            title = reader.nextLine();
-            if (!validateUserInputString(title)) {
-                System.out.println("Please enter a valid title:");
-            } else {
-                quit = true;
-            }
-        }
+        String title = getStringFromUserInput("title");
 
-        quit = false;
         System.out.println("Please enter the publisher of the magazine:");
-        while (!quit) {
-            publisher = reader.nextLine();
-            if (!validateUserInputString(publisher)) {
-                System.out.println("Please enter a valid publisher:");
-            } else {
-                quit = true;
-            }
-        }
+        String publisher = getStringFromUserInput("publisher");
 
-        quit = false;
         System.out.println("Please enter the number of yearly publications of the magazine:");
+
+
+        boolean quit = false;
         while (!quit) {
             if (reader.hasNextInt()) {
                 publicationsYearly = reader.nextInt();
                 reader.nextLine();
+
+                if ((1 > publicationsYearly) || (MAX_PUBLICATIONS_YEARLY < publicationsYearly)) {
+                    System.out.println("Please enter a valid number between 1 and " + MAX_PUBLICATIONS_YEARLY + ":");
+                } else {
+                    quit = true;
+                }
+
             } else {
                 System.out.println("Please enter a valid number between 1 and " + MAX_PUBLICATIONS_YEARLY + ":");
                 reader.next();
-                continue;
-            }
-
-            if ((1 > publicationsYearly) || (MAX_PUBLICATIONS_YEARLY < publicationsYearly)) {
-                System.out.println("Please enter a valid number between 1 and " + MAX_PUBLICATIONS_YEARLY + ":");
-            } else {
-                quit = true;
             }
         }
 
-        quit = false;
+
         System.out.println("Please enter the type of the magazine:");
-        while (!quit) {
-            type = reader.nextLine();
-            if (!validateUserInputString(type)) {
-                System.out.println("Please enter a valid type:");
-            } else {
-                quit = true;
-            }
-        }
+        String type = getStringFromUserInput("type");
 
-        quit = false;
         System.out.println("Please enter the genre of the magazine:");
-        while (!quit) {
-            genre = reader.nextLine();
-            if (!validateUserInputString(genre)) {
-                System.out.println("Please enter a valid genre:");
-            } else {
-                quit = true;
-            }
-        }
+        String genre = getStringFromUserInput("genre");
 
 
         Magazine magazine = new Magazine(title, publisher, publicationsYearly, type, genre);
@@ -223,21 +188,87 @@ public class ApplicationUI {
     private void findMagazineByTitleAndPublisher() {
         Scanner reader = new Scanner(System.in);
 
-        System.out.println("Enter the title of the magazine here");
-        String title = reader.nextLine();
-        System.out.println("Enter the publisher of the magazine here");
-        String publisher = reader.nextLine();
+        System.out.println("Enter the title of the magazine:");
+        String title = getStringFromUserInput("title");
+
+        System.out.println("Enter the publisher of the magazine:");
+        String publisher = getStringFromUserInput("publisher");
 
         Magazine foundMagazine = register.findMagazineByTitleAndPublisher(title, publisher);
+
         if (null != foundMagazine) {
-            System.out.println("The magazine matching the title \"" + title + "\" and the publisher \"" + publisher + "\" is:");
+            System.out.println("\nThe magazine matching the title \"" + title + "\" and the publisher \"" + publisher + "\" is:\n");
             printAllMagazineDetails(foundMagazine);
         } else {
-            System.out.println("This is not an existing magazine in the kiosk.");
+            System.out.println("There are no magazine in the kiosk matching the title \"" + title + "\" and the publisher \"" + publisher + "\".");
         }
     }
 
 
+    /**
+     * Finds and prints all magazines matching the publisher provided by the input from the user.
+     * If there are no magazines in the literature registry matching the
+     * publisher given, an error message is printed.
+     */
+    private void findMagazinesByPublisher() {
+        Scanner reader = new Scanner(System.in);
+
+        System.out.println("Enter the publisher of the magazine(s) here");
+        String publisher = getStringFromUserInput("publisher");
+
+        Iterator<Magazine> magazineIt = register.getMagazineByPublisherAsCollection(publisher);
+        if (magazineIt.hasNext()) {
+            System.out.println("\nThe magazines matching the publisher \"" + publisher + "\" is:\n");
+            while (magazineIt.hasNext()) {
+                printAllMagazineDetails(magazineIt.next());
+            }
+        } else {
+            System.out.println("There are no magazines in the kiosk matching the publisher \"" + publisher + "\".");
+        }
+    }
+
+
+    /**
+     * Gets the string input from the terminal passed by the user.
+     * @param magazineAttribute the magazine attribute to be presented in the error message to the user
+     * @return the string input from the terminal passed by the user
+     */
+    private String getStringFromUserInput(String magazineAttribute) {
+        Scanner reader = new Scanner(System.in);
+        boolean quit = false;
+        String input = null;
+
+        while (!quit) {
+            input = reader.nextLine();
+            if (!isValidString(input)) {
+                System.out.println("Please enter a valid " + magazineAttribute + ":");
+            } else {
+                quit = true;
+            }
+        }
+        return input;
+    }
+
+
+    /**
+     * Validates a string passed as parameter to ensure it is not null or empty.
+     * @param string the string to be validated
+     * @return true if the string passed as parameter is valid, otherwise false is returned.
+     */
+    private boolean isValidString(String string)
+    {
+        boolean valid = false;
+        if (!(string == null) && !(string.trim().isEmpty())) {
+            valid = true;
+        }
+        return valid;
+    }
+
+    /**
+     * Prints a formatted string containing all the details about the magazine, on the form
+     * "Title: title, Publisher: publisher, Number of yearly publications: publicationsYearly,
+     * Type of reading material: type, Genre: genre".
+     */
     private void printAllMagazineDetails(Magazine magazine) {
         System.out.println("Title: " + magazine.getTitle() + ", Publisher: " + magazine.getPublisher()
                 + ", Publications yearly: " + magazine.getPublicationsYearly()
