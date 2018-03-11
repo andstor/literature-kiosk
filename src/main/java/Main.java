@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * to start the application.
  *
  * @author André Storhaug, Christan Leira and Vebjørn Tomren
- * @version 1.1
+ * @version 2.1
  */
 public class Main {
 

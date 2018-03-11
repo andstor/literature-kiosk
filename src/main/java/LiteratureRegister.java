@@ -6,7 +6,7 @@ import java.util.Iterator;
  * magazines.
  *
  * @author André Storhaug, Christan Leira and Vebjørn Tomren
- * @version 1.1
+ * @version 2.1
  */
 public class LiteratureRegister {
 

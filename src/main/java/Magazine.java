@@ -2,7 +2,7 @@
  * Represents a single magazine.
  *
  * @author André Storhaug, Christan Leira and Vebjørn Tomren
- * @version 1.1
+ * @version 2.1
  */
 public class Magazine {
     private String title;
