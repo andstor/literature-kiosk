@@ -117,7 +117,7 @@ public class ApplicationUI {
         Iterator<Magazine> it = register.getAllMagazines();
 
         if (it.hasNext()) {
-            System.out.println("Current magazines in register:");
+            System.out.println("\nCurrent magazines in register:");
 
             while (it.hasNext()) {
                 Magazine magazine = it.next();
@@ -197,7 +197,7 @@ public class ApplicationUI {
         Magazine foundMagazine = register.findMagazineByTitleAndPublisher(title, publisher);
 
         if (null != foundMagazine) {
-            System.out.println("\nThe magazine matching the title \"" + title + "\" and the publisher \"" + publisher + "\" is:\n");
+            System.out.println("\nThe magazine matching the title \"" + title + "\" and the publisher \"" + publisher + "\" is:");
             printAllMagazineDetails(foundMagazine);
         } else {
             System.out.println("There are no magazine in the kiosk matching the title \"" + title + "\" and the publisher \"" + publisher + "\".");
@@ -218,7 +218,7 @@ public class ApplicationUI {
 
         Iterator<Magazine> magazineIt = register.getMagazineByPublisherAsCollection(publisher);
         if (magazineIt.hasNext()) {
-            System.out.println("\nThe magazines matching the publisher \"" + publisher + "\" is:\n");
+            System.out.println("\nThe magazines matching the publisher \"" + publisher + "\" is:");
             while (magazineIt.hasNext()) {
                 printAllMagazineDetails(magazineIt.next());
             }
