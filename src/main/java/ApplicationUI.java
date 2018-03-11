@@ -58,7 +58,7 @@ public class ApplicationUI {
                     default:
                 }
             } catch (InputMismatchException ime) {
-                System.out.println("\nERROR: Please provide a number between 1 and " + this.menuItems.length + "src/main\n");
+                System.out.println("\nERROR: Please provide a number between 1 and " + this.menuItems.length + ".\n");
             }
         }
     }
@@ -105,8 +105,8 @@ public class ApplicationUI {
 
 
     /**
-     * Lists all the products/literature in the register
-     * Returns information based on the contained magazines
+     * Lists all the products/literature in the register.
+     * Tells you to add a magazine if the list is empty.
      */
     private void listAllMagazines() {
         Iterator<Magazine> it = register.getAllMagazines();
@@ -217,8 +217,8 @@ public class ApplicationUI {
     }
 
     /**
-     * Finds a magazine based on the title and the publisher
-     * given as a user input.
+     * Finds and prints all information about a magazine, given the title and the publisher
+     * provided as a user input.
      */
     private void findMagazineByTitleAndPublisher() {
         Scanner reader = new Scanner(System.in);
@@ -238,7 +238,7 @@ public class ApplicationUI {
     }
 
 
-    public void printAllMagazineDetails(Magazine magazine) {
+    private void printAllMagazineDetails(Magazine magazine) {
         System.out.println("Title: " + magazine.getTitle() + ", Publisher: " + magazine.getPublisher()
                 + ", Publications yearly: " + magazine.getPublicationsYearly()
                 + ", Type: " + magazine.getType() + ", Genre: " + magazine.getGenre());
