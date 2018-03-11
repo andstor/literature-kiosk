@@ -135,8 +135,9 @@ public class ApplicationUI {
 
 
     /**
-     * Adds a new magazine to the register based on the information given by the
-     * user.
+     * Adds a new magazine based on the information provided by the user.
+     * This includes title, publisher, yearly publications, type and genre.
+     * If the user inputs a faulty value, an error message will be displayed.
      */
     private void addNewMagazine() {
         Scanner reader = new Scanner(System.in);
