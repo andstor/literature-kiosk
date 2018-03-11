@@ -6,7 +6,7 @@ import java.util.Iterator;
  * magazines.
  *
  * @author André Storhaug, Christan Leira and Vebjørn Tomren
- * @version 1.0
+ * @version 1.1
  */
 public class LiteratureRegister {
 
@@ -39,20 +39,22 @@ public class LiteratureRegister {
      * Removes a magazine from the literature registry.
      *
      * @param magazine the magazine to remove from the literature registry
-     * @return true if magazine was successfully removed from the register. false otherwise.
+     * @return true if magazine was successfully removed from the register; false otherwise.
      */
     public boolean removeMagazine(Magazine magazine) {
+        boolean removeSuccessful = false;
         if (null != magazine) {
-            return this.listOfMagazines.remove(magazine);
+            removeSuccessful = this.listOfMagazines.remove(magazine);
         } else {
-            return false;
+            removeSuccessful = false;
         }
+        return removeSuccessful;
     }
 
     /**
-     * Lists all magazines in the literature registry by printing to the
-     * terminal window.
-     * TODO: JavaDoc
+     * Returns an iterator with all the magazines in the literature registry.
+     *
+     * @return an iterator with all the magazines in the literature registry.
      */
     public Iterator<Magazine> getAllMagazines() {
         return listOfMagazines.iterator();

@@ -230,6 +230,7 @@ public class ApplicationUI {
 
     /**
      * Gets the string input from the terminal passed by the user.
+     *
      * @param magazineAttribute the magazine attribute to be presented in the error message to the user
      * @return the string input from the terminal passed by the user
      */
@@ -252,11 +253,11 @@ public class ApplicationUI {
 
     /**
      * Validates a string passed as parameter to ensure it is not null or empty.
+     *
      * @param string the string to be validated
      * @return true if the string passed as parameter is valid, otherwise false is returned.
      */
-    private boolean isValidString(String string)
-    {
+    private boolean isValidString(String string) {
         boolean valid = false;
         if (!(string == null) && !(string.trim().isEmpty())) {
             valid = true;
