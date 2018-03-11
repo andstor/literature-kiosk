@@ -85,6 +85,6 @@ class LiteratureRegisterTest {
 
         register.addMagazine(magazine);
 
-        assertFalse(register.getMagazineByPublisherAsCollection("publisher").hasNext());
+        assertFalse(register.getMagazineByPublisherAsCollection("not a publisher").hasNext());
     }
 }

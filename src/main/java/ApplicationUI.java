@@ -117,7 +117,7 @@ public class ApplicationUI {
         Iterator<Magazine> it = register.getAllMagazines();
 
         if (it.hasNext()) {
-            System.out.println("Current magazines in register:");
+            System.out.println("\nCurrent magazines in register:");
 
             while (it.hasNext()) {
                 Magazine magazine = it.next();
@@ -197,7 +197,7 @@ public class ApplicationUI {
         Magazine foundMagazine = register.findMagazineByTitleAndPublisher(title, publisher);
 
         if (null != foundMagazine) {
-            System.out.println("\nThe magazine matching the title \"" + title + "\" and the publisher \"" + publisher + "\" is:\n");
+            System.out.println("\nThe magazine matching the title \"" + title + "\" and the publisher \"" + publisher + "\" is:");
             printAllMagazineDetails(foundMagazine);
         } else {
             System.out.println("There are no magazine in the kiosk matching the title \"" + title + "\" and the publisher \"" + publisher + "\".");
@@ -218,7 +218,7 @@ public class ApplicationUI {
 
         Iterator<Magazine> magazineIt = register.getMagazineByPublisherAsCollection(publisher);
         if (magazineIt.hasNext()) {
-            System.out.println("\nThe magazines matching the publisher \"" + publisher + "\" is:\n");
+            System.out.println("\nThe magazines matching the publisher \"" + publisher + "\" is:");
             while (magazineIt.hasNext()) {
                 printAllMagazineDetails(magazineIt.next());
             }
@@ -230,6 +230,7 @@ public class ApplicationUI {
 
     /**
      * Gets the string input from the terminal passed by the user.
+     *
      * @param magazineAttribute the magazine attribute to be presented in the error message to the user
      * @return the string input from the terminal passed by the user
      */
@@ -252,11 +253,11 @@ public class ApplicationUI {
 
     /**
      * Validates a string passed as parameter to ensure it is not null or empty.
+     *
      * @param string the string to be validated
      * @return true if the string passed as parameter is valid, otherwise false is returned.
      */
-    private boolean isValidString(String string)
-    {
+    private boolean isValidString(String string) {
         boolean valid = false;
         if (!(string == null) && !(string.trim().isEmpty())) {
             valid = true;
