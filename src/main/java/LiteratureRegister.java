@@ -22,18 +22,31 @@ public class LiteratureRegister {
 
     /**
      * Adds a magazine to the literature registry.
-     * @param magazine the magazine to add to the literature registry
+     *
+     * @param magazine the magazine to add to the literature register
+     * @return true if magazine was successfully added to the register. false otherwise.
      */
-    public void addMagazine(Magazine magazine) {
-        this.listOfMagazines.add(magazine);
+    public boolean addMagazine(Magazine magazine) {
+        if (null != magazine) {
+            this.listOfMagazines.add(magazine);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
      * Removes a magazine from the literature registry.
+     *
      * @param magazine the magazine to remove from the literature registry
+     * @return true if magazine was successfully removed from the register. false otherwise.
      */
-    public void removeMagazine(Magazine magazine) {
-        this.listOfMagazines.remove(magazine);
+    public boolean removeMagazine(Magazine magazine) {
+        if (null != magazine) {
+            return this.listOfMagazines.remove(magazine);
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -50,10 +63,10 @@ public class LiteratureRegister {
      * If there are no magazines in the literature registry matching the
      * parameters given, <code>null</code> is returned.
      *
-     * @param title the title of the magazine to find in the literature registry
+     * @param title     the title of the magazine to find in the literature registry
      * @param publisher the publisher of the magazine to find in the literature registry
      * @return the magazine found in the literature registry matching the parameters provided; otherwise,
-     *         <code>null</code> is returned.
+     * <code>null</code> is returned.
      */
     public Magazine findMagazineByTitleAndPublisher(String title, String publisher) {
         Magazine foundMagazine = null;
@@ -82,14 +95,11 @@ public class LiteratureRegister {
         ArrayList<Magazine> listOfFoundMagazines = new ArrayList<>();
 
         for (Magazine m : this.listOfMagazines) {
-            if (publisher.equals(m.getPublisher())){
+            if (publisher.equals(m.getPublisher())) {
                 listOfFoundMagazines.add(m);
             }
         }
         return listOfFoundMagazines.iterator();
     }
 
-    public boolean isRegistryEmpty()    {
-        return listOfMagazines.isEmpty();
-    }
 }
