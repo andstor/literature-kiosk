@@ -119,14 +119,14 @@ public class ApplicationUI {
      * Tells you to add a magazine if the list is empty.
      */
     private void listAllMagazines() {
-        Iterator<Magazine> it = register.getAllMagazines();
+        Iterator<Literature> it = register.getAllMagazines();
 
         if (it.hasNext()) {
             System.out.println("\nCurrent magazines in register:");
 
             while (it.hasNext()) {
-                Magazine magazine = it.next();
-                printAllMagazineDetails(magazine);
+                Literature literature = it.next();
+                printAllMagazineDetails(literature);
             }
         } else {
             System.out.println("The registry is empty. Please add magazines.");
@@ -179,11 +179,11 @@ public class ApplicationUI {
         String genre = getStringFromUserInput("genre");
 
 
-        Magazine magazine = new Magazine(title, publisher, publicationsYearly, type, genre);
+        Literature literature = new Magazine(title, publisher, publicationsYearly, type, genre);
 
-        register.addMagazine(magazine);
+        register.addMagazine(literature);
         System.out.println("\nYour added magazine:");
-        printAllMagazineDetails(magazine);
+        printAllMagazineDetails(literature);
 
     }
 
@@ -200,11 +200,11 @@ public class ApplicationUI {
         System.out.println("Enter the publisher of the magazine:");
         String publisher = getStringFromUserInput("publisher");
 
-        Magazine foundMagazine = register.findMagazineByTitleAndPublisher(title, publisher);
+        Literature foundLiterature = register.findMagazineByTitleAndPublisher(title, publisher);
 
-        if (null != foundMagazine) {
+        if (null != foundLiterature) {
             System.out.println("\nThe magazine matching the title \"" + title + "\" and the publisher \"" + publisher + "\" is:");
-            printAllMagazineDetails(foundMagazine);
+            printAllMagazineDetails(foundLiterature);
         } else {
             System.out.println("There are no magazine in the kiosk matching the title \"" + title + "\" and the publisher \"" + publisher + "\".");
         }
@@ -222,7 +222,7 @@ public class ApplicationUI {
         System.out.println("Enter the publisher of the magazine(s) here");
         String publisher = getStringFromUserInput("publisher");
 
-        Iterator<Magazine> magazineIt = register.getMagazineByPublisherAsCollection(publisher);
+        Iterator<Literature> magazineIt = register.getMagazineByPublisherAsCollection(publisher);
         if (magazineIt.hasNext()) {
             System.out.println("\nThe magazines matching the publisher \"" + publisher + "\" is:");
             while (magazineIt.hasNext()) {
@@ -276,10 +276,10 @@ public class ApplicationUI {
      * "Title: title, Publisher: publisher, Number of yearly publications: publicationsYearly,
      * Type of reading material: type, Genre: genre".
      */
-    private void printAllMagazineDetails(Magazine magazine) {
-        System.out.println("Title: " + magazine.getTitle() + ", Publisher: " + magazine.getPublisher()
-                + ", Publications yearly: " + magazine.getPublicationsYearly()
-                + ", Type: " + magazine.getType() + ", Genre: " + magazine.getGenre());
+    private void printAllMagazineDetails(Literature literature) {
+        System.out.println("Title: " + literature.getTitle() + ", Publisher: " + literature.getPublisher()
+                + ", Publications yearly: " + literature.getPublicationsYearly()
+                + ", Type: " + literature.getType() + ", Genre: " + literature.getGenre());
     }
 
 }
