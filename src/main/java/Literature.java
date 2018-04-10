@@ -1,4 +1,4 @@
-public class Literature {
+public abstract class Literature {
     protected String title;
     protected String publisher;
     protected String type;
@@ -47,7 +47,7 @@ public class Literature {
         return genre;
     }
 
-        
+
     /**
      * Set the title of this magazine
      *

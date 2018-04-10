@@ -21,33 +21,33 @@ class LiteratureRegisterTest {
     @Test
     void addMagazine() {
 
-        assertTrue(register.addMagazine(literature));
+        assertTrue(register.addLiterature(literature));
     }
 
     @Test
     void addMagazinenegative() {
         Literature literature = null;
-        assertFalse(register.addMagazine(literature));
+        assertFalse(register.addLiterature(literature));
     }
 
     @Test
     void removeMagazine() {
-        register.addMagazine(literature);
-        assertTrue(register.removeMagazine(literature));
+        register.addLiterature(literature);
+        assertTrue(register.removeLiterature(literature));
     }
 
     @Test
     void removeMagazineNegative() {
         Literature literatureNull = null;
-        assertFalse(register.removeMagazine(literatureNull));
+        assertFalse(register.removeLiterature(literatureNull));
 
-        register.addMagazine(literature);
-        assertFalse(register.removeMagazine(literatureNull));
+        register.addLiterature(literature);
+        assertFalse(register.removeLiterature(literatureNull));
     }
 
     @Test
     void getAllMagazines() {
-        register.addMagazine(literature);
+        register.addLiterature(literature);
         assertTrue(register.getAllMagazines().hasNext());
     }
 
@@ -59,32 +59,32 @@ class LiteratureRegisterTest {
     @Test
     void findMagazineByTitleAndPublisher() {
 
-        register.addMagazine(literature);
+        register.addLiterature(literature);
 
-        assertEquals(literature, register.findMagazineByTitleAndPublisher("title", "publisher"));
+        assertEquals(literature, register.findLiteratureByTitleAndPublisher("title", "publisher"));
     }
 
     @Test
     void findMagazineByTitleAndPublisherNegative() {
 
-        register.addMagazine(literature);
+        register.addLiterature(literature);
 
-        assertEquals(null, register.findMagazineByTitleAndPublisher("not a title", "not a publisher"));
+        assertEquals(null, register.findLiteratureByTitleAndPublisher("not a title", "not a publisher"));
     }
 
     @Test
     void getMagazineByPublisherAsCollection() {
 
-        register.addMagazine(literature);
+        register.addLiterature(literature);
 
-        assertTrue(register.getMagazineByPublisherAsCollection("publisher").hasNext());
+        assertTrue(register.getLiteratureByPublisherAsCollection("publisher").hasNext());
     }
 
     @Test
     void getMagazineByPublisherAsCollectionNegative() {
 
-        register.addMagazine(literature);
+        register.addLiterature(literature);
 
-        assertFalse(register.getMagazineByPublisherAsCollection("not a publisher").hasNext());
+        assertFalse(register.getLiteratureByPublisherAsCollection("not a publisher").hasNext());
     }
 }
