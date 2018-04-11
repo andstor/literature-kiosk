@@ -11,7 +11,7 @@ class LiteratureRegisterTest {
     @BeforeEach
     void setUp() {
         register = new LiteratureRegister();
-        literature = new Magazine("title", "publisher", 100, "type", "genre");
+        literature = new Magazine("title", "publisher", 100, "genre");
     }
 
     @AfterEach
