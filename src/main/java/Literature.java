@@ -1,23 +1,55 @@
 public abstract class Literature {
     protected String title;
     protected String publisher;
-    protected String type;
     protected String genre;
+    protected String type;
 
-    public Literature(String type, String title, String genre, String publisher) {
-        this.type = type;
+
+    /**
+     * Constructor for objects of class Literature.
+     *
+     * @param title     the title  of this literature
+     * @param publisher the publisher of this literature
+     * @param genre     the genre of this literature
+     */
+    public Literature(String title, String genre, String publisher) {
         this.title = title;
         this.genre = genre;
         this.publisher = publisher;
+        this.setType();
     }
 
     /**
-     * Returns the title of this magazine.
+     * literature
+     * Returns the type of reading material.
      *
-     * @return the title of this magazine
+     * @return the type of reading material
+     */
+    abstract public String getType();
+
+    /**
+     * Set the literature type of this literature.
+     */
+    private final void setType() {
+        this.type = getType();
+    }
+
+    /**
+     * Returns the title of this literature.
+     *
+     * @return the title of this literature
      */
     public String getTitle() {
         return this.title;
+    }
+
+    /**
+     * Set the title of this literature
+     *
+     * @param title the title of this literature
+     */
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     /**
@@ -30,55 +62,27 @@ public abstract class Literature {
     }
 
     /**
-     * Returns the type of reading material.
+     * Set the publisher of this literature.
      *
-     * @return the type of reading material
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * Returns the genre number of this magazine.
-     *
-     * @return the genre number of this magazine
-     */
-    public String getGenre() {
-        return genre;
-    }
-
-
-    /**
-     * Set the title of this magazine
-     *
-     * @param title the title of this magazine
-     */
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    /**
-     * Set the publisher of this magazine.
-     *
-     * @param publisher the publisher of this magazine
+     * @param publisher the publisher of this literature
      */
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
 
     /**
-     * Set the literature type of this magazine.
+     * Returns the genre number of this literature.
      *
-     * @param type this type of magazine
+     * @return the genre number of this literature
      */
-    public void setType(String type) {
-        this.type = type;
+    public String getGenre() {
+        return genre;
     }
 
     /**
-     * Set the genre of this magazine.
+     * Set the genre of this literature.
      *
-     * @param genre the genre of this magazine
+     * @param genre the genre of this literature
      */
     public void setGenre(String genre) {
         this.genre = genre;
