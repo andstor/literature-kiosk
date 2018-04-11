@@ -2,14 +2,14 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MagazineTest {
-    private Literature literature;
+    private Magazine magazine;
 
     @BeforeEach
     void setUp() {
-        literature = new Magazine("title", "publisher", 100, "type", "genre");
+        magazine = new Magazine("title", "publisher", 100, "genre");
     }
 
     @AfterEach
@@ -17,62 +17,22 @@ class MagazineTest {
     }
 
     @Test
-    void getTitle() {
-        assertEquals("title", literature.getTitle());
-    }
-
-
-    @Test
-    void getPublisher() {
-        assertEquals("publisher", literature.getPublisher());
-
-    }
-
-    @Test
     void getPublicationsYearly() {
-        assertEquals(100, literature.getPublicationsYearly());
+        assertEquals(100, magazine.getPublicationsYearly());
     }
 
     @Test
     void getType() {
-        assertEquals("type", literature.getType());
-    }
-
-    @Test
-    void getGenre() {
-        assertEquals("genre", literature.getGenre());
-    }
-
-    @Test
-    void setTitle() {
-        literature.setTitle("new title");
-        assertEquals("new title", literature.getTitle());
-    }
-
-    @Test
-    void setPublisher() {
-        literature.setPublisher("new publisher");
-        assertEquals("new publisher", literature.getPublisher());
+        assertEquals("magazine", magazine.getType());
     }
 
     @Test
     void setPublicationsYearly() {
-        literature.setPublicationsYearly(1);
-        assertEquals(1, literature.getPublicationsYearly());
+        magazine.setPublicationsYearly(1);
+        assertEquals(1, magazine.getPublicationsYearly());
 
-        literature.setPublicationsYearly(365);
-        assertEquals(365, literature.getPublicationsYearly());
+        magazine.setPublicationsYearly(365);
+        assertEquals(365, magazine.getPublicationsYearly());
     }
 
-    @Test
-    void setType() {
-        literature.setType("new type");
-        assertEquals("new type", literature.getType());
-    }
-
-    @Test
-    void setGenre() {
-        literature.setGenre("new genre");
-        assertEquals("new genre", literature.getGenre());
-    }
 }
