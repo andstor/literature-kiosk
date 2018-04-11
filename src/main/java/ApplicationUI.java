@@ -179,7 +179,7 @@ public class ApplicationUI {
         String genre = getStringFromUserInput("genre");
 
 
-        Literature literature = new Magazine(title, publisher, publicationsYearly, type, genre);
+        Literature literature = new Magazine(title, publisher, publicationsYearly, genre);
 
         register.addLiterature(literature);
         System.out.println("\nYour added magazine:");
@@ -278,7 +278,7 @@ public class ApplicationUI {
      */
     private void printMagazineLiteratureDetails(Literature literature) {
         System.out.println("Title: " + literature.getTitle() + ", Publisher: " + literature.getPublisher()
-                + ", Publications yearly: " + literature.getPublicationsYearly()
+                + ", Publications yearly: " //+ literature.getPublicationsYearly()
                 + ", Type: " + literature.getType() + ", Genre: " + literature.getGenre());
     }
 
