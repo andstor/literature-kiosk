@@ -6,6 +6,8 @@
  */
 public class Magazine extends Literature {
 
+    private static final String TYPE = "magazine";
+
     protected int publicationsYearly;
 
     /**
@@ -14,15 +16,18 @@ public class Magazine extends Literature {
      * @param title              the title  of this magazine
      * @param publisher          the publisher of this magazine
      * @param publicationsYearly the release date of this magazine magazine
-     * @param type               the amount of pages of this magazine
      * @param genre              the genre of this magazine
      */
-    public Magazine(String title, String publisher, int publicationsYearly, String type, String genre) {
-        super(type, title, genre, publisher);
+    public Magazine(String title, String publisher, int publicationsYearly, String genre) {
+        super(title, genre, publisher);
         this.publicationsYearly = publicationsYearly;
 
     }
 
+    @Override
+    public String getType() {
+        return TYPE;
+    }
 
     /**
      * Returns the release date of the magazine.
@@ -41,4 +46,6 @@ public class Magazine extends Literature {
     public void setPublicationsYearly(int publicationsYearly) {
         this.publicationsYearly = publicationsYearly;
     }
+
+
 }
