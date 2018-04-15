@@ -11,28 +11,43 @@ import java.util.Scanner;
  * @version 2.0.1
  */
 public class ApplicationUI {
-    private static final int MAX_PUBLICATIONS_YEARLY = 365;
 
     private LiteratureRegister register;
+    private UserInputReader UIReader;
+
+
     // The menu that will be displayed.
     private String[] menuItems = {
-            "1. List all magazines",
-            "2. Add new magazine",
-            "3. Find a magazine by name and publisher",
-            "4. Find all magazines by publisher",
+            "1. List all literature",
+            "2. Add new literature",
+            "3. Find a literature by name and publisher",
+            "4. Find all literature by publisher",
+            "5. Add a book to a book series",
+            "6. Convert a book to a book series",
+
     };
+
+    // List of literature types.
+    private String[] types = {
+            "magazine",
+            "newspaper",
+            "journal",
+            "book",
+            "book series",
+            "comic",
+    };
+
 
     /**
      * Creates an instance of the ApplicationUI user interface.
      */
     public ApplicationUI() {
-
     }
 
     /**
      * Starts the application so the user can input commands through the UI.
      * The application has 5 options.
-     * The numbervalues are of data type int, and ranging from 1 to 5.
+     * The number values are of data type int, and ranging from 1 to 5.
      * If a different number is inputted, a error message will be displayed.
      */
     public void start() {
@@ -45,30 +60,38 @@ public class ApplicationUI {
                 int menuSelection = this.showMenu();
                 switch (menuSelection) {
                     case 1:
-                        this.listAllMagazines();
+                        listAllLiterature();
                         break;
 
                     case 2:
-                        this.addNewMagazine();
+                        this.addNewLiterature();
                         break;
 
                     case 3:
-                        this.findMagazineByTitleAndPublisher();
+                        this.findLiteratureByTitleAndPublisher();
                         break;
 
                     case 4:
-                        this.findMagazinesByPublisher();
+                        this.findLiteratureByPublisher();
                         break;
 
                     case 5:
-                        System.out.println("\nThank you for using Application v2.0.1. Bye!\n");
+                        this.addBookToBookSeries();
+                        break;
+
+                    case 6:
+                        this.convertBookToSeries();
+                        break;
+
+                    case 7:
+                        System.out.println("\nThank you for using Application v3.0.0. Bye!\n");
                         quit = true;
                         break;
 
                     default:
                 }
             } catch (InputMismatchException ime) {
-                System.out.println("\nERROR: Please provide a number between 1 and " + this.menuItems.length + ".\n");
+                System.out.println("\nERROR: Please provide a number between 1 and " + (this.menuItems.length + 1) + ".\n");
             }
         }
     }
@@ -80,11 +103,11 @@ public class ApplicationUI {
      * If the user inputs anything else, an InputMismatchException is thrown.
      * The method returns the valid input from the user.
      *
-     * @return the menu number (between 1 and max menu item number) provided by the user.
+     * @return the menu number (between 1 and max menu item number) provided by the user
      * @throws InputMismatchException if user enters an invalid number/menu choice
      */
     private int showMenu() throws InputMismatchException {
-        System.out.println("\n**** Application v2.0.1 ****\n");
+        System.out.println("\n**** Application v3.0.0 ****\n");
         // Display the menu
         for (String menuItem : menuItems) {
             System.out.println(menuItem);
@@ -103,7 +126,7 @@ public class ApplicationUI {
     }
 
     // ------ The methods below this line are "helper"-methods, used from the menu ----
-    // ------ All these methods are made privat, since they are only used by the menu ---
+    // ------ All these methods are made private, since they are only used by the menu ---
 
 
     /**
@@ -111,175 +134,190 @@ public class ApplicationUI {
      */
     private void init() {
         register = new LiteratureRegister();
+        UIReader = new UserInputReader();
     }
 
+
+    private String getTypeFromUser() {
+
+        String typeInput = null;
+
+
+        System.out.println("Which type of literature do you want to add?");
+        for (String type : types) {
+            System.out.print(type + ", ");
+        }
+        System.out.println();
+
+        boolean quit = false;
+        while (!quit) {
+            typeInput = UIReader.getStringFromUserInput("literature type");
+
+            boolean match = false;
+
+            for (String type : types) {
+                if (typeInput.equals(type)) {
+                    quit = true;
+                }
+            }
+
+            if (!quit) {
+                System.out.println("Please enter a valid literature type:");
+            }
+        }
+
+        return typeInput;
+    }
 
     /**
      * Lists all the products/literature in the register.
-     * Tells you to add a magazine if the list is empty.
+     * Tells you to add a literature if the list is empty.
      */
-    private void listAllMagazines() {
-        Iterator<Literature> it = register.getAllMagazines();
+    private void listAllLiterature() {
+        System.out.println("\nCurrent literature in register: ");
 
-        if (it.hasNext()) {
-            System.out.println("\nCurrent magazines in register:");
-
-            while (it.hasNext()) {
-                Literature literature = it.next();
-                printMagazineLiteratureDetails(literature);
-            }
-        } else {
-            System.out.println("The registry is empty. Please add magazines.");
-        }
-    }
-
-
-    /**
-     * Adds a new magazine based on the information provided by the user.
-     * This includes title, publisher, yearly publications, type and genre.
-     * If the user inputs a faulty value, an error message will be displayed.
-     */
-    private void addNewMagazine() {
-        Scanner reader = new Scanner(System.in);
-
-        int publicationsYearly = 0;
-
-        System.out.println("Please enter the title of the magazine:");
-        String title = getStringFromUserInput("title");
-
-        System.out.println("Please enter the publisher of the magazine:");
-        String publisher = getStringFromUserInput("publisher");
-
-        System.out.println("Please enter the number of yearly publications of the magazine:");
-
-
-        boolean quit = false;
-        while (!quit) {
-            if (reader.hasNextInt()) {
-                publicationsYearly = reader.nextInt();
-                reader.nextLine();
-
-                if ((1 > publicationsYearly) || (MAX_PUBLICATIONS_YEARLY < publicationsYearly)) {
-                    System.out.println("Please enter a valid number between 1 and " + MAX_PUBLICATIONS_YEARLY + ":");
-                } else {
-                    quit = true;
-                }
-
+        for (Literature literature : register) {
+            if (literature != null) {
+                String type = literature.getType();
+                LiteratureView view = LiteratureViewFactory.create(type);
+                view.printAllDetails(literature);
             } else {
-                System.out.println("Please enter a valid number between 1 and " + MAX_PUBLICATIONS_YEARLY + ":");
-                reader.next();
+                System.out.println("The are no literature in the register.");
             }
         }
-
-
-        System.out.println("Please enter the type of the magazine:");
-        String type = getStringFromUserInput("type");
-
-        System.out.println("Please enter the genre of the magazine:");
-        String genre = getStringFromUserInput("genre");
-
-
-        Literature literature = new Magazine(title, publisher, publicationsYearly, genre);
-
-        register.addLiterature(literature);
-        System.out.println("\nYour added magazine:");
-        printMagazineLiteratureDetails(literature);
-
     }
 
     /**
-     * Finds and prints all information about a magazine, given the title and the publisher
+     * Adds a new literature to the literature register based on the information provided by the user.
+     */
+    private void addNewLiterature() {
+        String type = getTypeFromUser();
+
+        Literature newLiterature = LiteratureFactory.createLiterature(type);
+        register.addLiterature(newLiterature);
+
+        System.out.println("Literature successfully added!");
+    }
+
+
+    /**
+     * Finds and prints all information about a literature, given the title and the publisher
      * provided as a user input.
      */
-    private void findMagazineByTitleAndPublisher() {
-        Scanner reader = new Scanner(System.in);
+    private void findLiteratureByTitleAndPublisher() {
+        System.out.println("Enter the title of the literature:");
+        String title = UIReader.getStringFromUserInput("title");
 
-        System.out.println("Enter the title of the magazine:");
-        String title = getStringFromUserInput("title");
+        System.out.println("Enter the publisher of the literature:");
+        String publisher = UIReader.getStringFromUserInput("publisher");
 
-        System.out.println("Enter the publisher of the magazine:");
-        String publisher = getStringFromUserInput("publisher");
-
-        Literature foundLiterature = register.findLiteratureByTitleAndPublisher(title, publisher);
+        Literature foundLiterature = register.getLiteratureByTitleAndPublisher(title, publisher);
 
         if (null != foundLiterature) {
-            System.out.println("\nThe magazine matching the title \"" + title + "\" and the publisher \"" + publisher + "\" is:");
-            printMagazineLiteratureDetails(foundLiterature);
+            String type = foundLiterature.getType();
+            System.out.println("\nThe literature matching the title \"" + title + "\" and the publisher \"" + publisher + "\" is:");
+            LiteratureView view = LiteratureViewFactory.create(type);
+            view.printAllDetails(foundLiterature);
         } else {
-            System.out.println("There are no magazine in the kiosk matching the title \"" + title + "\" and the publisher \"" + publisher + "\".");
+            System.out.println("There are no literature in the kiosk matching the title \"" + title + "\" and the publisher \"" + publisher + "\".");
         }
     }
 
 
     /**
-     * Finds and prints all magazines matching the publisher provided by the input from the user.
-     * If there are no magazines in the literature registry matching the
+     * Finds and prints all literature matching the publisher provided by the input from the user.
+     * If there are no literature in the literature registry matching the
      * publisher given, an error message is printed.
      */
-    private void findMagazinesByPublisher() {
-        Scanner reader = new Scanner(System.in);
+    private void findLiteratureByPublisher() {
+        System.out.println("Enter the publisher of the literature(s) here:");
+        String publisher = UIReader.getStringFromUserInput("publisher");
 
-        System.out.println("Enter the publisher of the magazine(s) here");
-        String publisher = getStringFromUserInput("publisher");
+        Iterator<Literature> literatureIt = register.getLiteratureByPublisherAsCollection(publisher);
+        if (literatureIt.hasNext()) {
+            System.out.println("\nThe literature published by the publisher \"" + publisher + "\" is: ");
+            while (literatureIt.hasNext()) {
+                Literature literature = literatureIt.next();
+                String type = literature.getType();
 
-        Iterator<Literature> magazineIt = register.getLiteratureByPublisherAsCollection(publisher);
-        if (magazineIt.hasNext()) {
-            System.out.println("\nThe magazines matching the publisher \"" + publisher + "\" is:");
-            while (magazineIt.hasNext()) {
-                printMagazineLiteratureDetails(magazineIt.next());
+                LiteratureView view = LiteratureViewFactory.create(type);
+                view.printAllDetails(literature);
             }
         } else {
-            System.out.println("There are no magazines in the kiosk matching the publisher \"" + publisher + "\".");
+            System.out.println("There are no literature in the kiosk matching the publisher \"" + publisher + "\".");
         }
     }
 
 
     /**
-     * Gets the string input from the terminal passed by the user.
-     *
-     * @param magazineAttribute the magazine attribute to be presented in the error message to the user
-     * @return the string input from the terminal passed by the user
+     * Adds a existing book matching the title and publisher provided by the user,
+     * to a existing book series also matching the provided title and publisher.
      */
-    private String getStringFromUserInput(String magazineAttribute) {
-        Scanner reader = new Scanner(System.in);
-        boolean quit = false;
-        String input = null;
+    private void addBookToBookSeries() {
+        System.out.println("Enter the title of the book series:");
+        String bookSeriesTitle = UIReader.getStringFromUserInput("title");
 
-        while (!quit) {
-            input = reader.nextLine();
-            if (!isValidString(input)) {
-                System.out.println("Please enter a valid " + magazineAttribute + ":");
+        System.out.println("Enter the publisher of the book series here:");
+        String bookSeriesPublisher = UIReader.getStringFromUserInput("publisher");
+
+        Literature foundBookSeries = register.getLiteratureByTitleAndPublisher(bookSeriesTitle, bookSeriesPublisher);
+
+
+        if (null != foundBookSeries) {
+
+            if (foundBookSeries instanceof BookSeries) {
+                BookSeries bookSeries = (BookSeries) foundBookSeries;
+
+
+                System.out.println("Enter the title of the book to be added to the series:");
+                String bookTitle = UIReader.getStringFromUserInput("title");
+
+                System.out.println("Enter the publisher of the book to be added to the series:");
+                String bookPublisher = UIReader.getStringFromUserInput("publisher");
+
+                Literature foundBook = register.getLiteratureByTitleAndPublisher(bookTitle, bookPublisher);
+                if (null != foundBook) {
+                    if (foundBook instanceof Book) {
+                        Book book = (Book) foundBook;
+                        bookSeries.addBookToSeries(book);
+                    } else {
+                        System.out.println("That is not a book in the register!");
+                    }
+                } else {
+                    System.out.println("There are no book  in the kiosk matching the title \"" + bookTitle + "\" and the publisher \"" + bookPublisher + "\".");
+                }
             } else {
-                quit = true;
+                System.out.println("That is not a book series in the register!");
             }
+        } else {
+            System.out.println("There are no book series in the kiosk matching the title \"" + bookSeriesTitle + "\" and the publisher \"" + bookSeriesPublisher + "\".");
         }
-        return input;
-    }
-
-
-    /**
-     * Validates a string passed as parameter to ensure it is not null or empty.
-     *
-     * @param string the string to be validated
-     * @return true if the string passed as parameter is valid, otherwise false is returned.
-     */
-    private boolean isValidString(String string) {
-        boolean valid = false;
-        if (!(string == null) && !(string.trim().isEmpty())) {
-            valid = true;
-        }
-        return valid;
     }
 
     /**
-     * Prints a formatted string containing all the details about the magazine, on the form
-     * "Title: title, Publisher: publisher, Number of yearly publications: publicationsYearly,
-     * Type of reading material: type, Genre: genre".
+     * Converts a book provided by the user matching the title and publisher, to a new book series.
      */
-    private void printMagazineLiteratureDetails(Literature literature) {
-        System.out.println("Title: " + literature.getTitle() + ", Publisher: " + literature.getPublisher()
-                + ", Publications yearly: " //+ literature.getPublicationsYearly()
-                + ", Type: " + literature.getType() + ", Genre: " + literature.getGenre());
-    }
+    public void convertBookToSeries() {
+        System.out.println("Enter the title of the book to be added to the series:");
+        String bookTitle = UIReader.getStringFromUserInput("title");
 
+        System.out.println("Enter the publisher of the book to be added to the series:");
+        String bookPublisher = UIReader.getStringFromUserInput("publisher");
+
+        Literature foundBook = register.getLiteratureByTitleAndPublisher(bookTitle, bookPublisher);
+        if (null != foundBook) {
+            if (foundBook instanceof Book) {
+                Book book = (Book) foundBook;
+                Literature bookSeries = book.convertToSeries();
+
+                // Print the book series
+                LiteratureViewFactory.create("book series").printAllDetails(bookSeries);
+
+            } else {
+                System.out.println("That is not a book in the register!");
+            }
+        } else {
+            System.out.println("There are no book in the kiosk matching the title \"" + bookTitle + "\" and the publisher \"" + bookPublisher + "\".");
+        }
+    }
 }
