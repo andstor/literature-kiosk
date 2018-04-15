@@ -1,8 +1,7 @@
 public abstract class Literature {
-    protected String title;
-    protected String publisher;
-    protected String genre;
-    protected String type;
+    private String title;
+    private String publisher;
+    private String genre;
 
 
     /**
@@ -16,23 +15,15 @@ public abstract class Literature {
         this.title = title;
         this.genre = genre;
         this.publisher = publisher;
-        this.setType();
     }
 
     /**
-     * literature
      * Returns the type of reading material.
      *
      * @return the type of reading material
      */
-    abstract public String getType();
+    public abstract String getType();
 
-    /**
-     * Set the literature type of this literature.
-     */
-    private final void setType() {
-        this.type = getType();
-    }
 
     /**
      * Returns the title of this literature.
@@ -44,7 +35,7 @@ public abstract class Literature {
     }
 
     /**
-     * Set the title of this literature
+     * Set the title of this literature.
      *
      * @param title the title of this literature
      */
@@ -62,15 +53,6 @@ public abstract class Literature {
     }
 
     /**
-     * Set the publisher of this literature.
-     *
-     * @param publisher the publisher of this literature
-     */
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
-
-    /**
      * Returns the genre number of this literature.
      *
      * @return the genre number of this literature
@@ -79,12 +61,4 @@ public abstract class Literature {
         return genre;
     }
 
-    /**
-     * Set the genre of this literature.
-     *
-     * @param genre the genre of this literature
-     */
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
 }

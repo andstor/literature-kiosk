@@ -7,12 +7,11 @@ import java.util.Iterator;
  * @author André Storhaug, Christan Leira and Vebjørn Tomren
  * @version 2.0.1
  */
-public class BookSeries extends Literature {
+public class BookSeries extends NonPeriodical {
 
     private static final String TYPE = "book series";
 
     private ArrayList<Book> listOfBooksInSeries;
-    private String author;
 
     /**
      * Constructor for objects of class BookSeries.
@@ -21,14 +20,12 @@ public class BookSeries extends Literature {
      * @param publisher the publisher of this book series
      * @param genre     the genre of this book series
      * @param author    The author of this book series.
-     * @param book      A list of the books in this series.
      */
-    public BookSeries(String title, String publisher, String genre, String author, Book book) {
-        super(title, genre, publisher);
+    public BookSeries(String title, String publisher, String genre, String author) {
+        super(title, genre, publisher, author);
         this.listOfBooksInSeries = new ArrayList<>();
-        this.author = author;
-        addBookToSeries(book);
     }
+
 
     /**
      * Constructor for objects of class BookSeries.
@@ -40,9 +37,8 @@ public class BookSeries extends Literature {
      * @param books     A list of the books in this series.
      */
     public BookSeries(String title, String publisher, String genre, String author, Iterator<Book> books) {
-        super(title, genre, publisher);
+        super(title, genre, publisher, author);
         this.listOfBooksInSeries = new ArrayList<>();
-        this.author = author;
         addBooksToSeries(books);
     }
 
@@ -50,6 +46,7 @@ public class BookSeries extends Literature {
     public String getType() {
         return TYPE;
     }
+
 
     /**
      * Adds a book to this book series.
@@ -59,6 +56,7 @@ public class BookSeries extends Literature {
     public void addBookToSeries(Book book) {
         this.listOfBooksInSeries.add(book);
     }
+
 
     /**
      * Adds several books to this book series.
@@ -86,7 +84,8 @@ public class BookSeries extends Literature {
      *
      * @return a collection (ArrayList<Book>) of the books in this book series.
      */
-    public ArrayList<Book> getListOfBooksInSeries() {
-        return listOfBooksInSeries;
+    public Iterator<Book> getAllBooksInSeriesAsCollection() {
+        return listOfBooksInSeries.iterator();
     }
+
 }

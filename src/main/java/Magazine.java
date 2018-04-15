@@ -4,11 +4,9 @@
  * @author André Storhaug, Christan Leira and Vebjørn Tomren
  * @version 2.0.1
  */
-public class Magazine extends Literature {
+public class Magazine extends Periodical {
 
     private static final String TYPE = "magazine";
-
-    protected int publicationsYearly;
 
     /**
      * Constructor for objects of class Magazine.
@@ -19,8 +17,7 @@ public class Magazine extends Literature {
      * @param genre              the genre of this magazine
      */
     public Magazine(String title, String publisher, int publicationsYearly, String genre) {
-        super(title, genre, publisher);
-        this.publicationsYearly = publicationsYearly;
+        super(title, genre, publisher, publicationsYearly);
 
     }
 
@@ -28,24 +25,4 @@ public class Magazine extends Literature {
     public String getType() {
         return TYPE;
     }
-
-    /**
-     * Returns the release date of the magazine.
-     *
-     * @return the release date of the magazine
-     */
-    public int getPublicationsYearly() {
-        return publicationsYearly;
-    }
-
-    /**
-     * Set the number of yearly publications of this magazine.
-     *
-     * @param publicationsYearly the number of yearly publications of this magazine
-     */
-    public void setPublicationsYearly(int publicationsYearly) {
-        this.publicationsYearly = publicationsYearly;
-    }
-
-
 }
