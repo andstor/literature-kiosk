@@ -1,8 +1,8 @@
 /**
  * Represents a single book.
  *
- * @author André Storhaug, Christan Leira and Vebjørn Tomren
- * @version 2.0.1
+ * @author André Storhaug and Vebjørn Tomren
+ * @version 3.0.0
  */
 public class Book extends NonPeriodical {
 

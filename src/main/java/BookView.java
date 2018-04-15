@@ -1,5 +1,11 @@
 import java.util.Scanner;
 
+/**
+ * Represents a single book view.
+ *
+ * @author André Storhaug and Vebjørn Tomren
+ * @version 3.0.0
+ */
 public class BookView implements LiteratureView {
 
     private static final int MAX_PAGES = 10000;

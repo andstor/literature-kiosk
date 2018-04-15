@@ -1,5 +1,11 @@
 import java.util.Iterator;
 
+/**
+ * Represents a book series view.
+ *
+ * @author André Storhaug and Vebjørn Tomren
+ * @version 3.0.0
+ */
 public class BookSeriesView implements LiteratureView {
 
     private UserInputReader UIReader;

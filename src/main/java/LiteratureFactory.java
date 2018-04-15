@@ -1,3 +1,10 @@
+
+/**
+ * Factory for creating literature.
+ *
+ * @author André Storhaug and Vebjørn Tomren
+ * @version 3.0.0
+ */
 public class LiteratureFactory {
 
 

@@ -1,5 +1,11 @@
 import java.util.Scanner;
 
+/**
+ * Represents a single comic view.
+ *
+ * @author André Storhaug and Vebjørn Tomren
+ * @version 3.0.0
+ */
 public class ComicView implements LiteratureView {
 
     private static final int MAX_PUBLICATIONS_YEARLY = 365;

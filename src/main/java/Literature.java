@@ -1,3 +1,10 @@
+
+/**
+ * Represents a abstract literature.
+ *
+ * @author André Storhaug and Vebjørn Tomren
+ * @version 3.0.0
+ */
 public abstract class Literature {
     private String title;
     private String publisher;
