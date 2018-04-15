@@ -313,6 +313,10 @@ public class ApplicationUI {
                 // Print the book series
                 LiteratureViewFactory.create("book series").printAllDetails(bookSeries);
 
+                // Add the book series to the register.
+                register.addLiterature(bookSeries);
+
+
             } else {
                 System.out.println("That is not a book in the register!");
             }
