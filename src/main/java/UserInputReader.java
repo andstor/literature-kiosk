@@ -1,5 +1,11 @@
 import java.util.Scanner;
 
+/**
+ * Represents a reader for String user inputs.
+ *
+ * @author André Storhaug and Vebjørn Tomren
+ * @version 3.0.0
+ */
 public class UserInputReader {
     /**
      * Gets the string input from the terminal passed by the user.

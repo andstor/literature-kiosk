@@ -1,5 +1,11 @@
 import java.util.Scanner;
 
+/**
+ * Represents a magazine view.
+ *
+ * @author André Storhaug and Vebjørn Tomren
+ * @version 3.0.0
+ */
 public class MagazineView implements LiteratureView {
 
     private static final int MAX_PUBLICATIONS_YEARLY = 365;

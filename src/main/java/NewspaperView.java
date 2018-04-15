@@ -1,5 +1,11 @@
 import java.util.Scanner;
 
+/**
+ * Represents a newspaper view.
+ *
+ * @author André Storhaug and Vebjørn Tomren
+ * @version 3.0.0
+ */
 public class NewspaperView implements LiteratureView {
 
     private static final int MAX_PUBLICATIONS_YEARLY = 365;

@@ -1,8 +1,8 @@
 /**
- * Represents a single magazine.
+ * Represents a single comic.
  *
  * @author André Storhaug and Vebjørn Tomren
- * @version 2.0.1
+ * @version 3.0.0
  */
 public class Comic extends Periodical {
 

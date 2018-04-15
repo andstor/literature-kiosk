@@ -1,3 +1,9 @@
+/**
+ * Represents non periodical literature.
+ *
+ * @author André Storhaug and Vebjørn Tomren
+ * @version 3.0.0
+ */
 public abstract class NonPeriodical extends Literature {
 
     protected String author;

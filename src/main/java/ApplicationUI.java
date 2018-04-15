@@ -7,8 +7,8 @@ import java.util.Scanner;
  * Responsible for all user interaction, like displaying the menu
  * and receiving input from the user.
  *
- * @author André Storhaug, Christan Leira and Vebjørn Tomren
- * @version 2.0.1
+ * @author André Storhaug and Vebjørn Tomren
+ * @version 3.0.0
  */
 public class ApplicationUI {
 

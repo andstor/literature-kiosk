@@ -1,3 +1,9 @@
+/**
+ * Represents periodical literature.
+ *
+ * @author André Storhaug and Vebjørn Tomren
+ * @version 3.0.0
+ */
 public abstract class Periodical extends Literature {
 
     private int publicationsYearly;
