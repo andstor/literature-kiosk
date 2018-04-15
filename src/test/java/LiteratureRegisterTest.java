@@ -25,7 +25,7 @@ class LiteratureRegisterTest {
     }
 
     @Test
-    void addMagazinenegative() {
+    void addMagazineNegative() {
         Literature literature = null;
         assertFalse(register.addLiterature(literature));
     }

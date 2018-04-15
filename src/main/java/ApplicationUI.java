@@ -297,7 +297,7 @@ public class ApplicationUI {
     /**
      * Converts a book provided by the user matching the title and publisher, to a new book series.
      */
-    public void convertBookToSeries() {
+    private void convertBookToSeries() {
         System.out.println("Enter the title of the book to be added to the series:");
         String bookTitle = UIReader.getStringFromUserInput("title");
 

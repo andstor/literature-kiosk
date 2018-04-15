@@ -31,7 +31,6 @@ public abstract class Literature {
      */
     public abstract String getType();
 
-
     /**
      * Returns the title of this literature.
      *
@@ -39,15 +38,6 @@ public abstract class Literature {
      */
     public String getTitle() {
         return this.title;
-    }
-
-    /**
-     * Set the title of this literature.
-     *
-     * @param title the title of this literature
-     */
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     /**

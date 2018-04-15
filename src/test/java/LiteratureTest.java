@@ -16,29 +16,12 @@ class LiteratureTest {
     void tearDown() {
     }
 
-    /*@Test
-    void getType() {
-        assertEquals("type", literature.getType());
-    }*/
-
-
-    /*@Test
-    void setType() {
-        literature.setType("new type");
-        assertEquals("new type", literature.getType());
-    }*/
-
     @Test
     void getTitle() {
         assertEquals("title", literature.getTitle());
     }
 
 
-    @Test
-    void setTitle() {
-        literature.setTitle("new title");
-        assertEquals("new title", literature.getTitle());
-    }
 
     @Test
     void getPublisher() {
