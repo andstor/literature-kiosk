@@ -8,7 +8,7 @@ import java.util.Iterator;
  * @author André Storhaug, Christan Leira and Vebjørn Tomren
  * @version 2.0.1
  */
-public class LiteratureRegister {
+public class LiteratureRegister implements Iterable<Literature> {
 
     private ArrayList<Literature> listOfLiterature;
 
@@ -17,6 +17,12 @@ public class LiteratureRegister {
      */
     public LiteratureRegister() {
         this.listOfLiterature = new ArrayList<>();
+    }
+
+
+    @Override
+    public Iterator<Literature> iterator() {
+        return listOfLiterature.iterator();
     }
 
 
@@ -68,9 +74,9 @@ public class LiteratureRegister {
      * @param title     the title of the magazine to find in the literature registry
      * @param publisher the publisher of the magazine to find in the literature registry
      * @return the magazine found in the literature registry matching the parameters provided; otherwise,
-     * <code>null</code> is returned.
+     * <code>null</code> is returned
      */
-    public Literature findLiteratureByTitleAndPublisher(String title, String publisher) {
+    public Literature getLiteratureByTitleAndPublisher(String title, String publisher) {
         Literature foundLiterature = null;
 
         Iterator<Literature> it = this.listOfLiterature.iterator();
@@ -84,13 +90,13 @@ public class LiteratureRegister {
     }
 
     /**
-     * Finds and returns a Iterator with magazines
+     * Finds and returns a Iterator with literature
      * with a publisher matching the parameter publisher.
-     * If there are no magazines in the literature registry matching the
-     * publisher given, an empty  is returned.
+     * If there are no literature in the literature registry matching the
+     * publisher given, an empty Iterator object is returned.
      *
-     * @param publisher The publisher of the magazine to find in the literature registry.
-     * @return an <code>Iterator</code> of magazine objects found in the literature
+     * @param publisher The publisher of the literature to find in the literature registry
+     * @return an <code>Iterator</code> of literature objects found in the literature
      * registry matching the publisher provided
      */
     public Iterator<Literature> getLiteratureByPublisherAsCollection(String publisher) {

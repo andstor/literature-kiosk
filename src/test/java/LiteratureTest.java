@@ -45,11 +45,7 @@ class LiteratureTest {
         assertEquals("publisher", literature.getPublisher());
     }
 
-    @Test
-    void setPublisher() {
-        literature.setPublisher("new publisher");
-        assertEquals("new publisher", literature.getPublisher());
-    }
+
 
     @Test
     void getGenre() {
@@ -57,9 +53,5 @@ class LiteratureTest {
     }
 
 
-    @Test
-    void setGenre() {
-        literature.setGenre("new genre");
-        assertEquals("new genre", literature.getGenre());
-    }
+
 }

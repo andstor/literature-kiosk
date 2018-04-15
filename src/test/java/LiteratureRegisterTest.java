@@ -61,7 +61,7 @@ class LiteratureRegisterTest {
 
         register.addLiterature(literature);
 
-        assertEquals(literature, register.findLiteratureByTitleAndPublisher("title", "publisher"));
+        assertEquals(literature, register.getLiteratureByTitleAndPublisher("title", "publisher"));
     }
 
     @Test
@@ -69,7 +69,7 @@ class LiteratureRegisterTest {
 
         register.addLiterature(literature);
 
-        assertEquals(null, register.findLiteratureByTitleAndPublisher("not a title", "not a publisher"));
+        assertEquals(null, register.getLiteratureByTitleAndPublisher("not a title", "not a publisher"));
     }
 
     @Test
