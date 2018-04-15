@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class NewspaperTest {
-    private Newspaper newspaper;
+class ComicTest {
+    private Comic comic;
 
     @BeforeEach
     void setUp() {
-        newspaper = new Newspaper("title", "publisher", 100, "genre");
+        comic = new Comic("title", "publisher", 100, "genre");
     }
 
     @AfterEach
@@ -18,11 +18,11 @@ class NewspaperTest {
 
     @Test
     void getPublicationsYearly() {
-        assertEquals(100, newspaper.getPublicationsYearly());
+        assertEquals(100, comic.getPublicationsYearly());
     }
 
     @Test
     void getType() {
-        assertEquals("newspaper", newspaper.getType());
+        assertEquals("comic", comic.getType());
     }
 }
