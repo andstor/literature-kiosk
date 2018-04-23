@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Represents a registry containing a number of
@@ -58,12 +59,12 @@ public class LiteratureRegister implements Iterable<Literature> {
     }
 
     /**
-     * Returns an iterator with all the magazines in the literature registry.
+     * Returns a list with all the literature in the literature registry.
      *
-     * @return an iterator with all the magazines in the literature registry.
+     * @return an list with all the literature in the literature registry.
      */
-    public Iterator<Literature> getAllMagazines() {
-        return listOfLiterature.iterator();
+    public List<Literature> getAllLiterature() {
+        return listOfLiterature;
     }
 
     /**
