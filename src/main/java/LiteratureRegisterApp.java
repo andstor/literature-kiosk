@@ -1,3 +1,14 @@
+import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+
 import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -10,7 +21,11 @@ import java.util.Scanner;
  * @author André Storhaug and Vebjørn Tomren
  * @version 3.0.0
  */
-public class ApplicationUI {
+public class LiteratureRegisterApp extends Application {
+
+    private Stage primaryStage;
+    private BorderPane root;
+    private TableView literatureTable;
 
     private LiteratureRegister register;
     private UserInputReader UIReader;
@@ -39,9 +54,13 @@ public class ApplicationUI {
 
 
     /**
-     * Creates an instance of the ApplicationUI user interface.
+     * Creates an instance of the LiteratureRegisterApp user interface.
      */
-    public ApplicationUI() {
+    public LiteratureRegisterApp() {
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 
     /**
@@ -51,7 +70,7 @@ public class ApplicationUI {
      * If a different number is inputted, a error message will be displayed.
      */
     public void start() {
-        this.init();
+        this.setup();
 
         boolean quit = false;
 
@@ -132,9 +151,106 @@ public class ApplicationUI {
     /**
      * Initializes the application.
      */
-    private void init() {
+    private void setup() {
         register = new LiteratureRegister();
         UIReader = new UserInputReader();
+    }
+
+
+    @Override
+    public void start(Stage stage) {
+        setup();
+
+        this.primaryStage = stage;
+        stage.setTitle("Literature register");
+
+        this.root = new BorderPane();
+
+        // Build Menu Bar
+        this.root.setTop(buildMenuBar());
+
+        // Build literature table
+        ObservableList<Literature> data = FXCollections.observableList(register.getAllLiterature());
+        this.root.setCenter(createTable(data));
+
+        // Build tree view
+
+
+        // Show UI
+        Scene scene = new Scene(this.root, 300, 300);
+        stage.setScene(scene);
+        scene.getStylesheets().add(LiteratureRegisterApp.class.getResource("main.css").toExternalForm());
+
+
+        stage.show();
+    }
+
+
+    /**
+     * Returns a menu bar.
+     *
+     * @return a menu bar
+     */
+    private MenuBar buildMenuBar() {
+
+        // Create the File menu
+        final Menu menu1 = new Menu("File");
+
+        MenuItem menuItem11 = new MenuItem("Open");
+        menuItem11.setOnAction(e -> System.out.println("Open menu item pressed."));
+
+        Menu subMenu21 = new Menu("Export as");
+        MenuItem menuItem211 = new MenuItem("Text file");
+        menuItem211.setOnAction(e -> System.out.println("Export as text file menu item pressed."));
+        subMenu21.getItems().addAll(menuItem211);
+
+        menu1.getItems().addAll(menuItem11, subMenu21);
+
+
+        // Create Edit menu
+        final Menu menu2 = new Menu("Edit");
+
+
+        //Create Help menu
+        final Menu menu3 = new Menu("Help");
+
+        MenuItem menuItem21 = new MenuItem("About");
+        menuItem21.setOnAction(e -> System.out.println("About menu item pressed."));
+        menu3.getItems().addAll(menuItem21);
+
+
+        // Create menu bar
+        MenuBar menuBar = new MenuBar();
+        menuBar.setUseSystemMenuBar(true);
+        menuBar.getMenus().addAll(menu1, menu2, menu3);
+
+        return menuBar;
+    }
+
+
+    private TableView<Literature> createTable(ObservableList<Literature> data) {
+        TableView<Literature> table = new TableView<>();
+        table.setItems(data);
+        table.setEditable(false);
+
+        TableColumn<Literature, String> typeCol = new TableColumn<>("Type");
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        TableColumn<Literature, String> titleCol = new TableColumn<>("Title");
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        TableColumn<Literature, String> publisherCol = new TableColumn<>("Publisher");
+        publisherCol.setCellValueFactory(new PropertyValueFactory<>("publisher"));
+        TableColumn<Literature, String> genreCol = new TableColumn<>("Genre");
+        genreCol.setCellValueFactory(new PropertyValueFactory<>("genre"));
+
+        table.getColumns().setAll(typeCol, titleCol, publisherCol, genreCol);
+        table.setPrefWidth(450);
+        table.setPrefHeight(300);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        table.getSelectionModel().selectedIndexProperty().addListener(
+                new RowSelectChangeListener());
+
+        return table;
     }
 
 
@@ -324,4 +440,16 @@ public class ApplicationUI {
             System.out.println("There are no book in the kiosk matching the title \"" + bookTitle + "\" and the publisher \"" + bookPublisher + "\".");
         }
     }
+
+
+
+
+    private class RowSelectChangeListener implements ChangeListener {
+        @Override
+        public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+            System.out.println(newValue);
+        }
+    }
+
+
 }
