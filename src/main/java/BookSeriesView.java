@@ -38,7 +38,7 @@ public class BookSeriesView implements LiteratureView {
             while (it.hasNext()) {
                 Book book = it.next();
                 System.out.println(" [Title: " + book.getTitle()
-                        + ", Publisher: " + book.getDateOfRelease() + "] ");
+                        + ", Date of release: " + book.getDateOfRelease() + "] ");
             }
         }
     }
