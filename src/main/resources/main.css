@@ -1,0 +1,127 @@
+.root {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+
+.menu-bar {
+
+    -fx-background-color: derive(#eeeeee, 20%);
+}
+
+.tool-bar {
+    -fx-background-color: derive(#eeeeee, 20%);
+}
+
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: white;
+    -fx-border-color: -fx-box-border;
+    -fx-border-width: 0 1 1 0;
+    /*-fx-border-insets: 0;*/
+}
+
+
+.table-view *.scroll-bar:horizontal *.increment-button,
+.table-view *.scroll-bar:horizontal *.decrement-button {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.table-view *.scroll-bar:horizontal *.increment-arrow,
+.table-view *.scroll-bar:horizontal *.decrement-arrow {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-shape: null;
+}
+
+
+/* Split pane dividers */
+.split-pane:horizontal > .split-pane-divider {
+    -fx-background-color: #ddd;
+    -fx-pref-width: 1px;
+
+}
+.split-pane:vertical > .split-pane-divider {
+    -fx-background-color: #ddd;
+    -fx-pref-width: 0;
+}
+
+/*.split-pane > .content > * {*/
+    /*-fx-background-insets: 0;*/
+    /*-fx-padding: 0;*/
+/*}*/
+.tree-view {
+    -fx-padding: 18 0 0 0;
+    -fx-background-insets: 0;
+}
+
+
+.progress-bar > .bar {
+    -fx-background-insets: 0;
+    -fx-padding: 0.25em;
+    -fx-background-radius: 0;
+    -fx-background-color: #008DFF;
+}
+
+.progress-bar > .track {
+    -fx-background-color: #ddd;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+}
+
+.scroll-pane {
+    -fx-background-insets: 0;
+}
+
+.text-field, .spinner, .button {
+    -fx-focus-color: #008dff;
+}
+
+.literatureDetails {
+    -fx-padding: 15;
+}
+
+.literatureDetails .button {
+    -fx-min-width: 50px;
+}
+
+.top-bar {
+    -fx-pref-height: 24px;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: -fx-box-border;
+    -fx-background-color: white;
+
+}
+.btn-hide {
+    -fx-pref-height: 23px;
+    -fx-background-color: transparent;
+    -fx-graphic: url("images/icon-arrow.png");
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 3px 6px;
+}
+
+.btn-hide:hover {
+    -fx-graphic: url("images/icon-arrow-hover.png");
+}
+
+
+
+/* ... so you might want to scope it */
+.text-field:disabled {
+    -fx-cursor: not-allowed;
+    -fx-opacity: 1.0;
+}
+
+/* Any enabled text input
+   or enabled textarea
+   or element with the contenteditable attribute */
+.text-field:editable {
+    -fx-opacity: 1.0;
+    -fx-cursor: text;
+}

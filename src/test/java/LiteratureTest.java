@@ -1,9 +1,15 @@
+import no.ntnu.litreg.Literature;
+import no.ntnu.litreg.Magazine;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author André Storhaug
+ * @version 4.0.0
+ */
 class LiteratureTest {
     private Literature literature;
 

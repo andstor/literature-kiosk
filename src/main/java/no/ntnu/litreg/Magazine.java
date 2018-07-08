@@ -1,8 +1,10 @@
+package no.ntnu.litreg;
+
 /**
  * Represents a single magazine.
  *
  * @author André Storhaug and Vebjørn Tomren
- * @version 3.0.0
+ * @version 4.0.0
  */
 public class Magazine extends Periodical {
 
@@ -25,4 +27,6 @@ public class Magazine extends Periodical {
     public String getType() {
         return TYPE;
     }
+
+
 }

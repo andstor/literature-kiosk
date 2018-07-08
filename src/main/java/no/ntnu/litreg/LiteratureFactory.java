@@ -1,9 +1,12 @@
+package no.ntnu.litreg;
+
+import java.util.Optional;
 
 /**
  * Factory for creating literature.
  *
  * @author André Storhaug and Vebjørn Tomren
- * @version 3.0.0
+ * @version 4.0.0
  */
 public class LiteratureFactory {
 
@@ -20,15 +23,14 @@ public class LiteratureFactory {
 
         if (type.equals("magazine")) {
 
-            MagazineView magazineView = (MagazineView) LiteratureViewFactory.create(type);
-            String title = magazineView.getTitleFromUser();
-            String publisher = magazineView.getPublisherFromUser();
-            int publicationsYearly = magazineView.getPublicationsYearlyFromUser();
-            String genre = magazineView.getGenreFromUser();
+            MagazineDetailsDialog magazineDetailsDialog = new MagazineDetailsDialog();
+            Optional<Magazine> result = magazineDetailsDialog.showAndWait();
+            if (result.isPresent()) {
+                Magazine magazine = result.get();
+                newLiterature = magazine;
+            }
 
-            newLiterature = new Magazine(title, publisher, publicationsYearly, genre);
-
-        } else if (type.equals("newspaper")) {
+        } /*else if (type.equals("newspaper")) {
             NewspaperView newspaperView = (NewspaperView) LiteratureViewFactory.create(type);
             String title = newspaperView.getTitleFromUser();
             String publisher = newspaperView.getPublisherFromUser();
@@ -77,7 +79,7 @@ public class LiteratureFactory {
 
             newLiterature = new BookSeries(title, publisher, genre, author);
         }
-
+*/
         return newLiterature;
     }
 }

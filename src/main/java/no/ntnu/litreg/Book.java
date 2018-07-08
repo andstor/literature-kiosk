@@ -1,8 +1,10 @@
+package no.ntnu.litreg;
+
 /**
  * Represents a single book.
  *
  * @author André Storhaug and Vebjørn Tomren
- * @version 3.0.0
+ * @version 4.0.0
  */
 public class Book extends NonPeriodical {
 
@@ -39,6 +41,19 @@ public class Book extends NonPeriodical {
      */
     public int getEdition() {
         return edition;
+    }
+
+
+    public void setDateOfRelease(String dateOfRelease) {
+        this.dateOfRelease = dateOfRelease;
+    }
+
+    public void setPages(int pages) {
+        this.pages = pages;
+    }
+
+    public void setEdition(int edition) {
+        this.edition = edition;
     }
 
     /**

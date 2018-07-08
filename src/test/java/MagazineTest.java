@@ -1,9 +1,14 @@
+import no.ntnu.litreg.Magazine;
 import org.junit.jupiter.api.AfterEach;
         import org.junit.jupiter.api.BeforeEach;
         import org.junit.jupiter.api.Test;
 
         import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * @author André Storhaug
+ * @version 4.0.0
+ */
 class MagazineTest {
     private Magazine magazine;
 

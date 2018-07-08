@@ -1,8 +1,10 @@
+package no.ntnu.litreg;
+
 /**
  * Represents periodical literature.
  *
  * @author André Storhaug and Vebjørn Tomren
- * @version 3.0.0
+ * @version 4.0.0
  */
 public abstract class Periodical extends Literature {
 
@@ -22,5 +24,10 @@ public abstract class Periodical extends Literature {
      */
     public int getPublicationsYearly() {
         return publicationsYearly;
+    }
+
+
+    public void setPublicationsYearly(int publicationsYearly) {
+        this.publicationsYearly = publicationsYearly;
     }
 }

@@ -1,3 +1,5 @@
+package no.ntnu.litreg;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -5,7 +7,7 @@ import java.util.Iterator;
  * Represents a book series.
  *
  * @author André Storhaug and Vebjørn Tomren
- * @version 3.0.0
+ * @version 4.0.0
  */
 public class BookSeries extends NonPeriodical {
 

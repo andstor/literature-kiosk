@@ -1,10 +1,12 @@
+package no.ntnu.litreg;
+
 import java.util.Scanner;
 
 /**
  * Represents a reader for String user inputs.
  *
  * @author André Storhaug and Vebjørn Tomren
- * @version 3.0.0
+ * @version 4.0.0
  */
 public class UserInputReader {
     /**

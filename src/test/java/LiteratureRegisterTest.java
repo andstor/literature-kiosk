@@ -1,9 +1,16 @@
+import no.ntnu.litreg.Literature;
+import no.ntnu.litreg.LiteratureRegister;
+import no.ntnu.litreg.Magazine;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author André Storhaug
+ * @version 4.0.0
+ */
 class LiteratureRegisterTest {
     private LiteratureRegister register;
     private Literature literature;
@@ -16,18 +23,6 @@ class LiteratureRegisterTest {
 
     @AfterEach
     void tearDown() {
-    }
-
-    @Test
-    void addMagazine() {
-
-        assertTrue(register.addLiterature(literature));
-    }
-
-    @Test
-    void addMagazineNegative() {
-        Literature literature = null;
-        assertFalse(register.addLiterature(literature));
     }
 
     @Test
@@ -45,16 +40,6 @@ class LiteratureRegisterTest {
         assertFalse(register.removeLiterature(literatureNull));
     }
 
-    @Test
-    void getAllMagazines() {
-        register.addLiterature(literature);
-        assertTrue(register.getAllMagazines().hasNext());
-    }
-
-    @Test
-    void getAllMagazinesNegative() {
-        assertFalse(register.getAllMagazines().hasNext());
-    }
 
     @Test
     void findMagazineByTitleAndPublisher() {

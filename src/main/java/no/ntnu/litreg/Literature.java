@@ -1,14 +1,16 @@
+package no.ntnu.litreg;
 
 /**
  * Represents a abstract literature.
  *
  * @author André Storhaug and Vebjørn Tomren
- * @version 3.0.0
+ * @version 4.0.0
  */
 public abstract class Literature {
     private String title;
     private String publisher;
     private String genre;
+    private String type;
 
 
     /**
@@ -22,6 +24,7 @@ public abstract class Literature {
         this.title = title;
         this.genre = genre;
         this.publisher = publisher;
+        this.type = getType();
     }
 
     /**
@@ -58,4 +61,18 @@ public abstract class Literature {
         return genre;
     }
 
+
+    //TODO check this ->>>
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
 }

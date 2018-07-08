@@ -1,8 +1,10 @@
+package no.ntnu.litreg;
+
 /**
  * Represents a single newspaper.
  *
  * @author André Storhaug and Vebjørn Tomren
- * @version 3.0.0
+ * @version 4.0.0
  */
 public class Newspaper extends Periodical {
 
