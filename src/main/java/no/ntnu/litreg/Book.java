@@ -1,3 +1,5 @@
+package no.ntnu.litreg;
+
 /**
  * Represents a single book.
  *
@@ -39,6 +41,19 @@ public class Book extends NonPeriodical {
      */
     public int getEdition() {
         return edition;
+    }
+
+
+    public void setDateOfRelease(String dateOfRelease) {
+        this.dateOfRelease = dateOfRelease;
+    }
+
+    public void setPages(int pages) {
+        this.pages = pages;
+    }
+
+    public void setEdition(int edition) {
+        this.edition = edition;
     }
 
     /**

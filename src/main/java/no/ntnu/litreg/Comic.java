@@ -1,3 +1,5 @@
+package no.ntnu.litreg;
+
 /**
  * Represents a single comic.
  *
