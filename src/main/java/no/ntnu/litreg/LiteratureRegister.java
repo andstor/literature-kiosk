@@ -1,6 +1,6 @@
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+package no.ntnu.litreg;
+
+import java.util.*;
 
 /**
  * Represents a registry containing a number of
@@ -33,12 +33,11 @@ public class LiteratureRegister implements Iterable<Literature> {
      * @param literature the magazine to add to the literature register
      * @return true if magazine was successfully added to the register. false otherwise.
      */
-    public boolean addLiterature(Literature literature) {
+    public void addLiterature(Literature literature) {
         if (null != literature) {
             this.listOfLiterature.add(literature);
-            return true;
         } else {
-            return false;
+            throw new InputMismatchException("Not a valid literature type");
         }
     }
 
@@ -50,11 +49,12 @@ public class LiteratureRegister implements Iterable<Literature> {
      */
     public boolean removeLiterature(Literature literature) {
         boolean removeSuccessful = false;
-        if (null != literature) {
-            removeSuccessful = this.listOfLiterature.remove(literature);
-        } else {
-            removeSuccessful = false;
+        if (null == literature) {
+            throw new NullPointerException("Literature can't be null");
         }
+
+        removeSuccessful = this.listOfLiterature.remove(literature);
+
         return removeSuccessful;
     }
 
@@ -76,17 +76,24 @@ public class LiteratureRegister implements Iterable<Literature> {
      * @param publisher the publisher of the magazine to find in the literature registry
      * @return the magazine found in the literature registry matching the parameters provided; otherwise,
      * <code>null</code> is returned
+     * @
      */
     public Literature getLiteratureByTitleAndPublisher(String title, String publisher) {
         Literature foundLiterature = null;
 
-        Iterator<Literature> it = this.listOfLiterature.iterator();
-        while ((null == foundLiterature) && (it.hasNext())) {
-            Literature literature = it.next();
-            if ((literature.getTitle().equals(title)) && (literature.getPublisher().equals(publisher))) {
-                foundLiterature = literature;
+        try {
+            Iterator<Literature> it = this.listOfLiterature.iterator();
+            while ((null == foundLiterature) && (it.hasNext())) {
+                Literature literature = it.next();
+                if ((literature.getTitle().equals(title)) && (literature.getPublisher().equals(publisher))) {
+                    foundLiterature = literature;
+                }
             }
+
+        } catch (NoSuchElementException error) {
+            System.out.println("Error: " + error);
         }
+
         return foundLiterature;
     }
 
@@ -110,5 +117,79 @@ public class LiteratureRegister implements Iterable<Literature> {
         }
         return listOfFoundLiterature.iterator();
     }
+
+
+    /**
+     * Retrieves a Iterator with all literature matching the provided genre.
+     *
+     * @param genre the genre to be searched for.
+     * @return
+     * @throws IllegalArgumentException if the genre is invalid.
+     */
+    public Iterator<Literature> getLiteratureByTypeAsCollection(String genre) {
+        if (genre == null) {
+            throw new IllegalArgumentException("null key in getLiteratureByTypeAsCollection");
+        } else if (genre.trim().length() == 0) {
+            throw new IllegalArgumentException("Empty key passed to getLiteratureByTypeAsCollection");
+
+        }
+
+        List<Literature> literature = null;
+        Set<String> genres = getUniqueGenres();
+        for (String g : genres) {
+
+        }
+        return literature.iterator();
+    }
+
+
+    /**
+     * Retrieves a unique set of literature types currently in use the literature register.
+     *
+     * @return a unique set of literature types currently in use the literature register
+     */
+    public Set<String> getUniqueTypes() {
+        Set<String> typesSet = new HashSet<>();
+
+        for (Literature literature : this.listOfLiterature) {
+            typesSet.add(literature.getType());
+        }
+
+        return typesSet;
+    }
+
+
+    /**
+     * Retrieves a unique set of literature genres currently in use the literature register.
+     *
+     * @return a unique set of literature genres currently in use the literature register
+     */
+    public Set<String> getUniqueGenres() {
+        Set<String> genresSet = new HashSet<>();
+
+        for (Literature literature : this.listOfLiterature) {
+            genresSet.add(literature.getGenre());
+        }
+
+        return genresSet;
+    }
+
+
+    /**
+     * @param type
+     * @return
+     */
+    public Set<String> getGenreForLiteratureType(String type) {
+        Set<String> genresSet = new HashSet<>();
+
+        for (Literature literature : listOfLiterature) {
+            if (literature.getType().equals(type)) {
+                genresSet.add(literature.getGenre());
+            }
+        }
+
+        return genresSet;
+    }
+
 
 }

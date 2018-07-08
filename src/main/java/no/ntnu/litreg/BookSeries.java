@@ -1,3 +1,5 @@
+package no.ntnu.litreg;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 

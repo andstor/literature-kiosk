@@ -1,3 +1,5 @@
+package no.ntnu.litreg;
+
 /**
  * Represents non periodical literature.
  *
@@ -24,4 +26,10 @@ public abstract class NonPeriodical extends Literature {
     public String getAuthor() {
         return author;
     }
+
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
 }

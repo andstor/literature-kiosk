@@ -1,3 +1,5 @@
+package no.ntnu.litreg;
+
 /**
  * Represents a single magazine.
  *
@@ -25,4 +27,6 @@ public class Magazine extends Periodical {
     public String getType() {
         return TYPE;
     }
+
+
 }

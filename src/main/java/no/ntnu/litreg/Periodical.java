@@ -1,3 +1,5 @@
+package no.ntnu.litreg;
+
 /**
  * Represents periodical literature.
  *
@@ -22,5 +24,10 @@ public abstract class Periodical extends Literature {
      */
     public int getPublicationsYearly() {
         return publicationsYearly;
+    }
+
+
+    public void setPublicationsYearly(int publicationsYearly) {
+        this.publicationsYearly = publicationsYearly;
     }
 }
