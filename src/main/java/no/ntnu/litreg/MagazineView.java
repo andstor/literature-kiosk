@@ -17,7 +17,7 @@ import java.util.Observable;
  * Represents a magazine view.
  *
  * @author André Storhaug and Vebjørn Tomren
- * @version 3.0.0
+ * @version 4.0.0
  */
 public class MagazineView extends Observable implements LiteratureView {
 

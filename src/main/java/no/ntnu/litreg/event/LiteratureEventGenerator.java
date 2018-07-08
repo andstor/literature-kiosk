@@ -2,6 +2,10 @@ package no.ntnu.litreg.event;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * @author André Storhaug
+ * @version 4.0.0
+ */
 public class LiteratureEventGenerator {
 
     // Use CopyOnWriteArrayList to avoid ConcurrentModificationExceptions if a

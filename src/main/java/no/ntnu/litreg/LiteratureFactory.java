@@ -6,7 +6,7 @@ import java.util.Optional;
  * Factory for creating literature.
  *
  * @author André Storhaug and Vebjørn Tomren
- * @version 3.0.0
+ * @version 4.0.0
  */
 public class LiteratureFactory {
 

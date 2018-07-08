@@ -4,7 +4,7 @@ package no.ntnu.litreg;
  * Represents a abstract literature.
  *
  * @author André Storhaug and Vebjørn Tomren
- * @version 3.0.0
+ * @version 4.0.0
  */
 public abstract class Literature {
     private String title;

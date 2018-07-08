@@ -4,6 +4,12 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
+/**
+ * Represents a magazine details dialog.
+ *
+ * @author André Storhaug and Vebjørn Tomren
+ * @version 4.0.0
+ */
 public class MagazineDetailsDialog extends Dialog<Magazine> {
     public MagazineDetailsDialog() {
         super();

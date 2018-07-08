@@ -2,6 +2,10 @@ package no.ntnu.litreg.event;
 
 import java.util.EventListener;
 
+/**
+ * @author André Storhaug
+ * @version 4.0.0
+ */
 public interface LiteratureChangeEventListener extends LiteratureEventListener {
     /**
      * Invoked when a specific event of the type for which this handler is

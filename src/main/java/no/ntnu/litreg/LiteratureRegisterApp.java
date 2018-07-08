@@ -27,7 +27,7 @@ import java.util.Optional;
  * Responsible for all user interaction, like displaying the menu
  * and receiving input from the user.
  *
- * @author André Storhaug and Vebjørn Tomren
+ * @author André Storhaug
  * @version 4.0.0
  */
 public class LiteratureRegisterApp extends Application {

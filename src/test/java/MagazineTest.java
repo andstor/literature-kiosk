@@ -5,6 +5,10 @@ import org.junit.jupiter.api.AfterEach;
 
         import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * @author André Storhaug
+ * @version 4.0.0
+ */
 class MagazineTest {
     private Magazine magazine;
 

@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * @author André Storhaug
+ * @version 4.0.0
+ */
 class JournalTest {
     private Journal journal;
 

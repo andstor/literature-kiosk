@@ -6,6 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author André Storhaug
+ * @version 4.0.0
+ */
 class LiteratureTest {
     private Literature literature;
 

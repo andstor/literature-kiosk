@@ -6,7 +6,7 @@ import com.sun.istack.internal.NotNull;
  * Factory for creating literature views.
  *
  * @author André Storhaug and Vebjørn Tomren
- * @version 3.0.0
+ * @version 4.0.0
  */
 public class LiteratureViewFactory {
 

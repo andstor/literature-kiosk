@@ -14,7 +14,7 @@ import no.ntnu.litreg.event.*;
  * Represents a single book view.
  *
  * @author André Storhaug and Vebjørn Tomren
- * @version 3.0.0
+ * @version 4.0.0
  */
 public class BookView implements LiteratureView {
 
